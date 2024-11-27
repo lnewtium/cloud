@@ -1,11 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {createDir, getFiles, uploadFile} from "../../actions/file";
+import {getFiles, uploadFile} from "../../actions/file";
 import FileList from "./fileList/FileList";
-import './disk.css'
+import './disk.less'
 import Popup from "./Popup";
 import {setCurrentDir, setFileView, setPopupDisplay} from "../../reducers/fileReducer";
 import Uploader from "./uploader/Uploader";
+import {AskPass} from "../askpass/AskPass.jsx";
+import Modal from "react-modal";
+import {StyledSelect} from "../Select.js";
+import {StyledButton} from "../Button.js";
 
 const Disk = () => {
     const dispatch = useDispatch()
@@ -14,6 +18,11 @@ const Disk = () => {
     const dirStack = useSelector(state => state.files.dirStack)
     const [dragEnter, setDragEnter] = useState(false)
     const [sort, setSort] = useState('type')
+
+    useEffect(() => {
+        // Set the app element for accessibility
+        Modal.setAppElement('#root');
+    }, []);
 
     useEffect(() => {
         dispatch(getFiles(currentDir, sort))
@@ -64,25 +73,26 @@ const Disk = () => {
     return ( !dragEnter ?
             <div className="disk" onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>
                 <div className="disk__btns">
-                    <button className="disk__back" onClick={() => backClickHandler()}>Назад</button>
-                    <button className="disk__create" onClick={() => showPopupHandler()}>Создать папку</button>
+                    <StyledButton className="disk__back" onClick={() => backClickHandler()}>Назад</StyledButton>
+                    <StyledButton className="disk__create" onClick={() => showPopupHandler()}>Создать папку</StyledButton>
                     <div className="disk__upload">
                         <label htmlFor="disk__upload-input" className="disk__upload-label">Загрузить файл</label>
                         <input multiple={true} onChange={(event)=> fileUploadHandler(event)} type="file" id="disk__upload-input" className="disk__upload-input"/>
                     </div>
-                    <select value={sort}
+                    <StyledSelect value={sort}
                             onChange={(e) => setSort(e.target.value)}
                             className='disk__select'>
                         <option value="name">По имени</option>
                         <option value="type">По типу</option>
                         <option value="date">По дате</option>
-                    </select>
+                    </StyledSelect>
                     <button className="disk__plate" onClick={() => dispatch(setFileView('plate'))}/>
                     <button className="disk__list" onClick={() => dispatch(setFileView('list'))}/>
                 </div>
                 <FileList/>
                 <Popup/>
                 <Uploader/>
+                <AskPass/>
             </div>
             :
             <div className="drop-area" onDrop={dropHandler} onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>

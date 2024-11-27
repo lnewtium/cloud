@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './authorization.css'
+import './authorization.less'
 import Input from "../../utils/input/Input";
 import {registration} from "../../actions/user";
 

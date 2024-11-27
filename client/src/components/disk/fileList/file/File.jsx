@@ -1,11 +1,13 @@
 import React from 'react';
-import './file.css'
+import './file.less'
 import dirLogo from '../../../../assets/img/dir.svg'
 import fileLogo from '../../../../assets/img/file.svg'
 import {useDispatch, useSelector} from "react-redux";
 import {pushToStack, setCurrentDir} from "../../../../reducers/fileReducer";
-import {deleteFile, downloadFile} from "../../../../actions/file";
+import {askForDecryptPass, deleteFile, downloadFile} from "../../../../actions/file";
 import sizeFormat from "../../../../utils/sizeFormat";
+import {StyledButton} from "../../../Button.js";
+
 const File = ({file}) => {
     const dispatch = useDispatch()
     const currentDir = useSelector(state => state.files.currentDir)
@@ -23,6 +25,11 @@ const File = ({file}) => {
         downloadFile(file)
     }
 
+    function decryptClickHandler(e) {
+        e.stopPropagation()
+        dispatch(askForDecryptPass(file))
+    }
+
     function deleteClickHandler(e) {
         e.stopPropagation()
         dispatch(deleteFile(file))
@@ -30,14 +37,19 @@ const File = ({file}) => {
 
     if (fileView === 'list') {
         return (
-            <div className='file' onClick={() => openDirHandler(file)}>
+            <div className='group file' onClick={() => openDirHandler(file)}>
                 <img src={file.type === 'dir' ? dirLogo : fileLogo} alt="" className="file__img"/>
                 <div className="file__name">{file.name}</div>
                 <div className="file__date">{file.date.slice(0, 10)}</div>
                 <div className="file__size">{sizeFormat(file.size)}</div>
                 {file.type !== 'dir' &&
-                <button onClick={(e) => downloadClickHandler(e)} className="file__btn file__download">download</button>}
-                <button onClick={(e) => deleteClickHandler(e)} className="file__btn file__delete">delete</button>
+                    <div style={{display:"flex"}}>
+                        <StyledButton onClick={e => downloadClickHandler(e)} className="file__btn file__download">Отладка
+                        </StyledButton>
+                        <StyledButton onClick={e => decryptClickHandler(e)} className="file__btn file__download">Дешифровать
+                        </StyledButton>
+                    </div>}
+                <StyledButton onClick={(e) => deleteClickHandler(e)} className="file__btn file__delete">Удалить</StyledButton>
             </div>
         );
     }
@@ -46,10 +58,10 @@ const File = ({file}) => {
             <div className='file-plate' onClick={() => openDirHandler(file)}>
                 <img src={file.type === 'dir' ? dirLogo : fileLogo} alt="" className="file-plate__img"/>
                 <div className="file-plate__name">{file.name}</div>
-                <div className="file-plate__btns">
+                <div className="file-plate__btns" style={{display: "flex", flexDirection: "column"}}>
                     {file.type !== 'dir' &&
-                    <button onClick={(e) => downloadClickHandler(e)} className="file-plate__btn file-plate__download">download</button>}
-                    <button onClick={(e) => deleteClickHandler(e)} className="file-plate__btn file-plate__delete">delete</button>
+                    <StyledButton onClick={e => decryptClickHandler(e)} className="file-plate__btn file-plate__download">Дешифровать</StyledButton>}
+                    <StyledButton onClick={e => deleteClickHandler(e)} className="file-plate__btn file-plate__delete">Удалить</StyledButton>
                 </div>
             </div>
         );

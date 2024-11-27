@@ -1,0 +1,33 @@
+volumes:
+  mongodb_data:
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: client
+  mongodb:
+    build: https://github.com/themattman/mongodb-raspberrypi-docker.git#:7.0.8
+    container_name: mongodb
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      # provide your credentials here
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=pass1234
+  backend:
+    build:
+      context: server
+    container_name: backend
+    restart: always
+    depends_on:
+      - mongodb
+  proxy:
+    image: nginx:1.26-alpine
+    container_name: proxy
+    restart: always
+    depends_on:
+      - frontend
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf

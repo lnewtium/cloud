@@ -5,6 +5,8 @@ server/node_modules
 .idea
 # dependencies
 client/node_modules
+client/dist
 
 server/files
 server/static
+server/.env

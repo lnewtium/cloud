@@ -1,19 +1,19 @@
-const SHOW_LOADER = 'SHOW_LOADER'
-const HIDE_LOADER = 'HIDE_LOADER'
+import { createSlice } from '@reduxjs/toolkit';
 
-const defaultState = {
-    loader: false
-}
-
-export default function userReducer(state = defaultState, action) {
-    switch (action.type) {
-        case SHOW_LOADER: return {...state, loader: true}
-        case HIDE_LOADER: return {...state, loader: false}
-        default:
-            return state
+const appSlice = createSlice({
+    name: 'app',
+    initialState: {
+        loader: false
+    },
+    reducers: {
+        showLoader: (state) => {
+            state.loader = true;
+        },
+        hideLoader: (state) => {
+            state.loader = false;
+        }
     }
-}
+});
 
-
-export const showLoader = () => ({type: SHOW_LOADER})
-export const hideLoader = () => ({type: HIDE_LOADER})
+export const { showLoader, hideLoader } = appSlice.actions;
+export default appSlice.reducer;
