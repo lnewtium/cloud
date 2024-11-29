@@ -19,7 +19,7 @@ const FileList = () => {
         return (
             <div className='fileplate'>
                 {files.map(file =>
-                    <File key={file._id} file={file}/>
+                    <File key={file.id} file={file}/>
                 )}
             </div>
         )
@@ -36,7 +36,7 @@ const FileList = () => {
                 <TransitionGroup>
                     {files.map(file =>
                         <CSSTransition
-                            key={file._id}
+                            key={file.id}
                             timeout={500}
                             classNames={'file'}
                             exit={false}

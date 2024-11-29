@@ -26,7 +26,7 @@ const fileSlice = createSlice({
             state.dirStack.push(action.payload);
         },
         deleteFile: (state, action) => {
-            state.files = state.files.filter(file => file._id !== action.payload);
+            state.files = state.files.filter(file => file.id !== action.payload);
         },
         setFileView: (state, action) => {
             state.view = action.payload;

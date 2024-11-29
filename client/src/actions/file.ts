@@ -120,7 +120,7 @@ export function uploadFileEncrypted(fileProps: {
 
 
 export async function downloadFile(file) {
-    const response = await fetch(`${API_URL}api/files/download?id=${file._id}`, {
+    const response = await fetch(`${API_URL}api/files/download?id=${file.id}`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -147,7 +147,7 @@ export function askForDecryptPass(file) {
 
 export function decryptFile(file, key) {
     return async dispatch => {
-        const response = await fetch(`${API_URL}api/files/download?id=${file._id}`, {
+        const response = await fetch(`${API_URL}api/files/download?id=${file.id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -175,7 +175,7 @@ export function deleteFile(file) {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             })
-            dispatch(deleteFileAction(file._id))
+            dispatch(deleteFileAction(file.id))
             alert(response.data.message)
         } catch (e) {
             // @ts-ignore
