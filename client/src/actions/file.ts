@@ -167,7 +167,6 @@ export function decryptFile(file, key) {
 }
 
 export function deleteFile(file) {
-    console.log(file)
     return async dispatch => {
         try {
             const response = await axios.delete(`${API_URL}api/files?id=${file.id}`, {

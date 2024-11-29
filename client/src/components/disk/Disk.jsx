@@ -42,6 +42,11 @@ const Disk = () => {
         files.forEach(file => dispatch(uploadFile(file, currentDir)))
     }
 
+    function clearFileInput(event) {
+        // Hacky way to make a file input send onChange on identical files
+        event.target.value = ''
+    }
+
     function dragEnterHandler(event) {
         event.preventDefault()
         event.stopPropagation()
@@ -77,7 +82,7 @@ const Disk = () => {
                     <StyledButton className="disk__create" onClick={() => showPopupHandler()}>Создать папку</StyledButton>
                     <div className="disk__upload">
                         <label htmlFor="disk__upload-input" className="disk__upload-label">Загрузить файл</label>
-                        <input multiple={true} onChange={(event)=> fileUploadHandler(event)} type="file" id="disk__upload-input" className="disk__upload-input"/>
+                        <input multiple={true} onClick={clearFileInput} onChange={fileUploadHandler} type="file" id="disk__upload-input" className="disk__upload-input"/>
                     </div>
                     <StyledSelect value={sort}
                             onChange={(e) => setSort(e.target.value)}
