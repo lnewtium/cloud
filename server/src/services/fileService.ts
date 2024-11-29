@@ -1,9 +1,9 @@
 import fs from "fs";
 import config from "config";
-import { File as IFile } from "@prisma/client";
+import { FileSchema } from "@prisma/client";
 
 class FileService {
-  createDir(file: IFile) {
+  createDir(file: FileSchema) {
     const filePath = `${config.filePath}/${file.userId}/${file.path}`;
     return new Promise((resolve, reject) => {
       try {
@@ -19,7 +19,7 @@ class FileService {
     });
   }
 
-  deleteFile(file: IFile) {
+  deleteFile(file: FileSchema) {
     const path = this.getPath(file);
     if (file.type === "Folder") {
       fs.rmdirSync(path);
@@ -28,7 +28,7 @@ class FileService {
     }
   }
 
-  getPath(file: IFile) {
+  getPath(file: FileSchema) {
     return config.filePath + "/" + file.userId + "/" + file.path;
   }
 }

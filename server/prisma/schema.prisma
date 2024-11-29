@@ -13,36 +13,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int     @id @default(autoincrement())
-  email     String  @unique
+model UserSchema {
+  id        Int          @id @default(autoincrement())
+  email     String       @unique
   password  String
-  diskSpace BigInt  @default(10737418240) // 1024**3*10
-  usedSpace BigInt  @default(0)
+  diskSpace BigInt       @default(10737418240) // 1024**3*10
+  usedSpace BigInt       @default(0)
   avatar    String?
-  files     File[]
+  files     FileSchema[]
 
   @@map("users")
 }
 
-model File {
+model FileSchema {
   id         Int          @id @default(autoincrement())
   name       String
-  type       ActivityType
+  type       String
   accessLink String?
-  size       Int?         @default(0)
+  size       BigInt?      @default(0)
   path       String       @default("")
   date       DateTime     @default(now())
   parentId   Int?         @unique @map("parent_id")
-  parent     File?        @relation("self_relation", fields: [parentId], references: [id])
-  children   File[]       @relation("self_relation")
+  parent     FileSchema?  @relation("self_relation", fields: [parentId], references: [id])
+  children   FileSchema[] @relation("self_relation")
   userId     Int
-  user       User         @relation(fields: [userId], references: [id])
+  user       UserSchema   @relation(fields: [userId], references: [id])
 
   @@map("files")
-}
-
-enum ActivityType {
-  File
-  Folder
 }

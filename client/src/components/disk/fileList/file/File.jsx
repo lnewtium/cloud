@@ -38,11 +38,11 @@ const File = ({file}) => {
     if (fileView === 'list') {
         return (
             <div className='group file' onClick={() => openDirHandler(file)}>
-                <img src={file.type === 'dir' ? dirLogo : fileLogo} alt="" className="file__img"/>
+                <img src={file.type === 'Folder' ? dirLogo : fileLogo} alt="" className="file__img"/>
                 <div className="file__name">{file.name}</div>
                 <div className="file__date">{file.date.slice(0, 10)}</div>
                 <div className="file__size">{sizeFormat(file.size)}</div>
-                {file.type !== 'dir' &&
+                {file.type !== 'Folder' &&
                     <div style={{display:"flex"}}>
                         <StyledButton onClick={e => downloadClickHandler(e)} className="file__btn file__download">Отладка
                         </StyledButton>
@@ -56,10 +56,10 @@ const File = ({file}) => {
     if (fileView === 'plate') {
         return (
             <div className='file-plate' onClick={() => openDirHandler(file)}>
-                <img src={file.type === 'dir' ? dirLogo : fileLogo} alt="" className="file-plate__img"/>
+                <img src={file.type === 'Folder' ? dirLogo : fileLogo} alt="" className="file-plate__img"/>
                 <div className="file-plate__name">{file.name}</div>
                 <div className="file-plate__btns" style={{display: "flex", flexDirection: "column"}}>
-                    {file.type !== 'dir' &&
+                    {file.type !== 'Folder' &&
                     <StyledButton onClick={e => decryptClickHandler(e)} className="file-plate__btn file-plate__download">Дешифровать</StyledButton>}
                     <StyledButton onClick={e => deleteClickHandler(e)} className="file-plate__btn file-plate__delete">Удалить</StyledButton>
                 </div>

@@ -1,6 +1,5 @@
 {
   "serverPort": 5000,
-  "dbUrl": "mongodb://admin:pass1234@mongodb:27017/?directConnection=true&serverSelectionTimeoutMS=2000",
   "secretKey": "mern-secket-key",
   "filePath": "serverFiles/files",
   "staticPath": "serverFiles/static"

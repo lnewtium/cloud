@@ -48,8 +48,7 @@ export function createDir(dirId, name) {
         try {
             const response = await axios.post(`${API_URL}api/files`, {
                 name,
-                parent: dirId,
-                type: 'dir'
+                parent: dirId
             }, {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
             })
@@ -168,9 +167,10 @@ export function decryptFile(file, key) {
 }
 
 export function deleteFile(file) {
+    console.log(file)
     return async dispatch => {
         try {
-            const response = await axios.delete(`${API_URL}api/files?id=${file._id}`, {
+            const response = await axios.delete(`${API_URL}api/files?id=${file.id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
