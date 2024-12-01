@@ -96,12 +96,15 @@ export function uploadFileEncrypted(fileProps: UploadFileType, key: string) {
       const uploadFile: FileInUploader = { name: file.name, progress: 0, id: Date.now() };
       dispatch(showUploader());
       dispatch(addUploadFile(uploadFile));
-      const response = await axios.post<IFileResponse>(`${API_URL}api/files/upload`, formData, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        onUploadProgress: progressEvent => {
-          dispatch(changeUploadFile({ ...uploadFile, progress: Math.round((progressEvent.progress! * 100)) }));
+      const response = await axios.post<IFileResponse>(`${API_URL}api/files/upload`, formData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          },
+          onUploadProgress: (progressEvent =>
+            dispatch(changeUploadFile({ ...uploadFile, progress: Math.round((progressEvent.progress! * 100)) })))
         }
-      });
+      );
       dispatch(addFile(remapFile(response.data)));
     } catch (e) {
       // @ts-ignore
