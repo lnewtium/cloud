@@ -2,8 +2,7 @@ import fileService from "../services/fileService";
 import config from "config";
 import fs from "fs";
 import { prisma } from "@/db";
-import { v4 } from "uuid";
-import { AuthorizedRequest } from "@/middleware/auth.middleware";
+import { AuthorizedRequest } from "@/middlewares/auth.middleware";
 import express from "express";
 import { z } from "zod";
 
@@ -32,7 +31,7 @@ class FileController {
         }
         data = { ...data, path: `${parentFile.path}/${name}` };
         if (parentFile.parentId && Array.isArray(parentFile.children)) {
-          // Update parent after folfer creation
+          // Update parent after folder creation
           updateParent = async () => {
             await prisma.fileSchema.update({
               where: {
@@ -107,7 +106,7 @@ class FileController {
       if (req.body.parent) {
         parent = await prisma.fileSchema.findUnique({
           where: {
-            id: req.body.parent,
+            id: Number(req.body.parent),
             userId: req.user?.id,
           },
         });
@@ -205,6 +204,9 @@ class FileController {
       if (!file) {
         return res.status(400).json({ message: "Object not found" });
       }
+      if (file.type === "Folder" && !fileService.checkForEmptyDir(file)) {
+        return res.status(400).json({ message: "Folder not empty" });
+      }
       fileService.deleteFile(file);
       await prisma.fileSchema.delete({
         where: {
@@ -243,68 +245,6 @@ class FileController {
     } catch (e) {
       console.log(e);
       return res.status(400).json({ message: "Search error" });
-    }
-  }
-
-  async uploadAvatar(req: AuthorizedRequest, res: express.Response) {
-    try {
-      const file = req.files?.file;
-
-      if (!file || Array.isArray(file)) {
-        return res.status(400).send({ message: "Request is bad" });
-      }
-      const user = await prisma.userSchema.findUnique({
-        where: {
-          id: req.user?.id,
-        },
-        select: {},
-      });
-      if (!user) {
-        return res.status(401).json({ message: "User not found" });
-      }
-      const avatarName = v4() + ".jpg";
-      await file.mv(config.staticPath + "/" + avatarName);
-      await prisma.userSchema.update({
-        where: {
-          id: req.user?.id,
-        },
-        data: {
-          avatar: avatarName,
-        },
-      });
-      return res.json(user);
-    } catch (e) {
-      console.log(e);
-      return res.status(400).json({ message: "Upload avatar error" });
-    }
-  }
-
-  async deleteAvatar(req: AuthorizedRequest, res: express.Response) {
-    try {
-      const user = await prisma.userSchema.findUnique({
-        where: {
-          id: req.user?.id,
-        },
-        select: {
-          avatar: true,
-        },
-      });
-      if (!user) {
-        return res.status(401).json({ message: "User not found" });
-      }
-      fs.unlinkSync(config.staticPath + "/" + user.avatar);
-      await prisma.userSchema.update({
-        where: {
-          id: req.user?.id,
-        },
-        data: {
-          avatar: null,
-        },
-      });
-      return res.json(user);
-    } catch (e) {
-      console.log(e);
-      return res.status(400).json({ message: "Delete avatar error" });
     }
   }
 }

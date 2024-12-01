@@ -3,7 +3,6 @@ declare module "config" {
     serverPort: number;
     secretKey: string;
     filePath: string;
-    staticPath: string;
   }
 
   const config: IConfig;

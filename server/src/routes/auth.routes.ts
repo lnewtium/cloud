@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import { check, validationResult } from "express-validator";
 import authMiddleware, {
   AuthorizedRequest,
-} from "@/middleware/auth.middleware";
+} from "@/middlewares/auth.middleware";
 import fileService from "../services/fileService";
 import { prisma } from "@/db";
 
@@ -54,7 +54,10 @@ router.post(
         parentId: null,
         id: 0,
       });
-      res.json({ message: "User was created" });
+      const token = jwt.sign({ id: user.id }, config.secretKey, {
+        expiresIn: "1h",
+      });
+      res.json({ message: "User was created", token: token });
     } catch (e) {
       console.log(e);
       res.send({ message: "Server error" });
@@ -83,7 +86,6 @@ router.post("/login", async (req: express.Request, res: express.Response) => {
         email: user.email,
         diskSpace: Number(user.diskSpace),
         usedSpace: Number(user.usedSpace),
-        avatar: user.avatar,
       },
     });
   } catch (e) {
@@ -113,7 +115,6 @@ router.get(
           email: user.email,
           diskSpace: Number(user.diskSpace),
           usedSpace: Number(user.usedSpace),
-          avatar: user.avatar,
         },
       });
     } catch (e) {

@@ -8,4 +8,6 @@ client/node_modules
 client/dist
 
 server/serverFiles
+server/tsconfig.tsbuildinfo
+server/dist
 server/.env

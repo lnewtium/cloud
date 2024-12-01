@@ -19,7 +19,6 @@ model UserSchema {
   password  String
   diskSpace BigInt       @default(10737418240) // 1024**3*10
   usedSpace BigInt       @default(0)
-  avatar    String?
   files     FileSchema[]
 
   @@map("users")

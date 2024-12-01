@@ -1,6 +1,7 @@
 import fs from "fs";
 import config from "config";
 import { FileSchema } from "@prisma/client";
+import path from "node:path";
 
 class FileService {
   createDir(file: FileSchema) {
@@ -19,6 +20,11 @@ class FileService {
     });
   }
 
+  checkForEmptyDir(file: FileSchema) {
+    const filePath = this.getPath(file);
+    return fs.readdirSync(filePath).length === 0;
+  }
+
   deleteFile(file: FileSchema) {
     const path = this.getPath(file);
     if (file.type === "Folder") {
@@ -29,7 +35,7 @@ class FileService {
   }
 
   getPath(file: FileSchema) {
-    return config.filePath + "/" + file.userId + "/" + file.path;
+    return path.join(config.filePath, String(file.userId), file.path);
   }
 }
 
