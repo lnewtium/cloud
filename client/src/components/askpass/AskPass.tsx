@@ -3,31 +3,8 @@ import Modal from "react-modal";
 import { hideAskPass, setCryptPass } from "@/reducers/uploadReducer";
 import { decryptFile, uploadFileEncrypted } from "@/actions/file";
 import { X, LockKeyhole, LockKeyholeOpen } from "lucide-react";
-import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
-
-const StyledButton = styled.button`
-    background-color: #c3c3c3; /* Primary color */
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    text-transform: uppercase; /* Material UI buttons are typically uppercase */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-
-    &:hover {
-        background-color: #adadad; /* Darker shade on hover */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adding subtle shadow on hover */
-    }
-
-    &:disabled {
-        background-color: #e0e0e0; /* Light gray when disabled */
-        color: #9e9e9e;
-        cursor: not-allowed;
-    }
-`;
+import { StyledButton } from "@/components/Button";
 
 const customStyles = {
   content: {
@@ -38,7 +15,8 @@ const customStyles = {
     padding: "16px",
     minWidth: "300px",
     marginRight: "-50%",
-    transform: "translate(-50%, -50%)"
+    transform: "translate(-50%, -50%)",
+    backgroundColor: "#3a3a3a"
   }
 };
 
@@ -58,6 +36,9 @@ export const AskPass = () => {
         style={customStyles}
         contentLabel="Enter encryption key"
       >
+        <div className={"mb-4"}>
+          Provide encryption passphrase
+        </div>
         <input type={"password"} placeholder={"Enter encryption key"}
                onChange={e => dispatch(setCryptPass(e.target.value))} />
         <div style={{ display: "flex", margin: "8px", justifyContent: "space-between", alignItems: "center" }}>

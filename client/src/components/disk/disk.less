@@ -17,30 +17,28 @@
   }
 
   &__upload-label {
-    border: 2px dashed @font-color;
+    border: 2px dashed #de6e57;
     padding: 5px 10px;
     cursor: pointer;
     margin-left: 10px;
-
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    &:hover {
+      background-color: #575757; /* Lighter dark shade on hover */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+    }
   }
   &__select {
     margin-left: auto;
   }
   &__list, &__plate {
-    height: 20px;
-    width: 20px;
     border: none;
     outline: none;
     cursor: pointer;
-    background: no-repeat center center;
-    background-size: contain;
     margin: 0 10px;
-  }
-  &__list {
-    background-image: url("../../assets/img/list.svg");
-  }
-  &__plate {
-    background-image: url("../../assets/img/plate.svg");
+    transition: transform 0.1s ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 }
 
@@ -70,7 +68,7 @@
 
   &__content {
     width: 400px;
-    background: white;
+    background: #3a3a3a;
     padding: 20px;
     border-radius: 12px;
     display: flex;

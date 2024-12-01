@@ -16,6 +16,7 @@ import Modal from "react-modal";
 import { StyledSelect } from "../Select";
 import { StyledButton } from "../Button";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
+import { AlignJustify, Grip } from "lucide-react";
 
 const Disk = () => {
   const dispatch = useAppDispatch();
@@ -103,8 +104,12 @@ const Disk = () => {
             <option value="type">By Type</option>
             <option value="date">By Date</option>
           </StyledSelect>
-          <button className="disk__plate" onClick={() => dispatch(setFileView("plate"))} />
-          <button className="disk__list" onClick={() => dispatch(setFileView("list"))} />
+          <button className="disk__plate" onClick={() => dispatch(setFileView("plate"))}>
+            <Grip color = "#de6e57" size = {32}/>
+          </button>
+          <button className="disk__list" onClick={() => dispatch(setFileView("list"))}>
+            <AlignJustify color = "#de6e57" size = {32}/>
+          </button>
         </div>
         <FileList />
         <Popup />

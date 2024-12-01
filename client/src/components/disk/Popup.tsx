@@ -4,6 +4,7 @@ import { setPopupDisplay } from "@/reducers/fileReducer";
 import { createDir } from "@/actions/file";
 import { StyledButton } from "../Button";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
+import { X } from "lucide-react";
 
 const Popup = () => {
   const [dirName, setDirName] = useState("");
@@ -21,7 +22,7 @@ const Popup = () => {
         <div className="popup__header"
              style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div className="popup__title">Create new folder</div>
-          <StyledButton className="popup__close" onClick={() => dispatch(setPopupDisplay("none"))}>X</StyledButton>
+          <StyledButton onClick={() => dispatch(setPopupDisplay("none"))}><X /></StyledButton>
         </div>
         <Input type="text" placeholder="Enter folder name..." value={dirName} setValue={setDirName} />
         <StyledButton className="popup__create" onClick={() => createHandler()}>Create</StyledButton>

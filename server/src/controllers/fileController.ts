@@ -5,6 +5,7 @@ import { prisma } from "@/db";
 import { AuthorizedRequest } from "@/middlewares/auth.middleware";
 import express from "express";
 import { z } from "zod";
+import * as sea from "node:sea";
 
 class FileController {
   async createDir(req: AuthorizedRequest, res: express.Response) {
@@ -226,10 +227,6 @@ class FileController {
     try {
       const validator = z.string();
       const searchName = req.query.search;
-      if (!(searchName instanceof String)) {
-        return res.status(400).json({ message: "Search name is required" });
-      }
-      // let files = await File.find({ user: req.user?.id });
       const userWithFiles = await prisma.userSchema.findUnique({
         where: {
           id: req.user?.id,

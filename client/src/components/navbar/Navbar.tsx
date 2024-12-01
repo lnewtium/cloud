@@ -1,12 +1,12 @@
 import React, { ChangeEventHandler, useState } from "react";
 import "./navbar.less";
-import Logo from "../../assets/img/navbar-logo.svg";
 import { Link, NavLink } from "react-router-dom";
 import { logout } from "@/reducers/userReducer";
 import { getFiles, searchFiles } from "@/actions/file";
 import { showLoader } from "@/reducers/appReducer";
 import avatarLogo from "../../assets/img/avatar.svg";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
+import { CircleUserRound, Cloud } from "lucide-react";
 
 const Navbar = () => {
   const isAuth = useAppSelector(state => state.user.isAuth);
@@ -33,7 +33,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="container">
-        <img src={Logo} alt="" className="navbar__logo" />
+        <Cloud className="navbar__logo" color = "#B0B0B0"/>
         <Link className="navbar__header" style={{ textDecorationLine: "none" }} to={"/"}>SECURE CLOUD</Link>
         {isAuth && <input
           value={searchName}
@@ -41,10 +41,10 @@ const Navbar = () => {
           className="navbar__search"
           type="text"
           placeholder="File name..." />}
-        {!isAuth && <div className="navbar__login"><NavLink to="/login">Login</NavLink></div>}
-        {!isAuth && <div className="navbar__registration"><NavLink to="/registration">Registration</NavLink></div>}
-        {isAuth && <div className="navbar__login" onClick={() => dispatch(logout())}>Logout</div>}
-        {isAuth && <img className="navbar__avatar" src={avatarLogo} alt="" />}
+        {!isAuth && <div className="navbar__login navbar__btns"><NavLink to="/login">Login</NavLink></div>}
+        {!isAuth && <div className="navbar__registration navbar__btns"><NavLink to="/registration">Registration</NavLink></div>}
+        {isAuth && <div className="navbar__login navbar__btns" onClick={() => dispatch(logout())}>Logout</div>}
+        {isAuth && <CircleUserRound className="navbar__avatar"/>}
       </div>
     </div>
   );
