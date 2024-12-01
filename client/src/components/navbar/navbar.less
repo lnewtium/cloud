@@ -1,6 +1,11 @@
 @import "../../utils/colors";
 
 .navbar {
+  /* Make the navbar stay on top of the content, even when scrolling down */
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+
   display: flex;
   height: 50px;
   justify-content: center;
