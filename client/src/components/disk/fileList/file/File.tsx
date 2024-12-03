@@ -3,11 +3,13 @@ import "./file.less";
 import dirLogo from "@/assets/img/dir.svg";
 import fileLogo from "@/assets/img/file.svg";
 import { pushToStack, setCurrentDir } from "@/reducers/fileReducer";
-import { askForDecryptPass, deleteFile, downloadFile } from "@/actions/file";
+import { askForDecryptPass, deleteFile } from "@/actions/file";
 import sizeFormat from "@/utils/sizeFormat";
-import { StyledButton } from "@/components/Button";
+import { StyledButton } from "@/components/button/StyledButton";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import { IFile, IFolder } from "@/types/file";
+import { File as FileIcon, Folder, LockKeyholeOpen, Trash2 } from "lucide-react";
+import AnimatedButton from "@/components/button/AnimatedButton";
 
 const File = ({ file }) => {
   const dispatch = useAppDispatch();
@@ -20,11 +22,6 @@ const File = ({ file }) => {
         dispatch(pushToStack(currentDir));
       dispatch(setCurrentDir(file as IFolder));
     }
-  }
-
-  function downloadClickHandler(e: MouseEvent) {
-    e.stopPropagation();
-    downloadFile(file);
   }
 
   function decryptClickHandler(e: MouseEvent) {
@@ -40,33 +37,49 @@ const File = ({ file }) => {
   if (fileView === "list") {
     return (
       <div className="group file" onClick={() => openDirHandler(file)}>
-        <img src={file.type === "Folder" ? dirLogo : fileLogo} alt="" className="file__img" />
+        {
+          file.type === "Folder"
+            ?
+            <Folder size={40} />
+            :
+            <FileIcon size={40} />
+        }
         <div className="file__name">{file.name}</div>
         <div className="file__date">{file.date.slice(0, 10)}</div>
         <div className="file__size">{sizeFormat(file.size)}</div>
         {file.type !== "Folder" &&
-          <div style={{ display: "flex" }}>
-            <StyledButton onClick={e => downloadClickHandler(e)} className="file__btn file__download">Download with encryption
-            </StyledButton>
-            <StyledButton onClick={e => decryptClickHandler(e)} className="file__btn file__download">Decrypt
-            </StyledButton>
-          </div>
+          <AnimatedButton text="Decrypt" onClick={decryptClickHandler}
+                          className="hidden group-hover:col-start-5 group-hover:block">
+            <LockKeyholeOpen />
+          </AnimatedButton>
         }
-        <StyledButton onClick={(e) => deleteClickHandler(e)} className="file__btn file__delete">Delete</StyledButton>
+        <AnimatedButton text="Delete" onClick={deleteClickHandler}
+                        className="hidden group-hover:col-start-6 group-hover:block">
+          <Trash2 />
+        </AnimatedButton>
       </div>
     );
   }
   if (fileView === "plate") {
     return (
       <div className="file-plate" onClick={() => openDirHandler(file)}>
-        <img src={file.type === "Folder" ? dirLogo : fileLogo} alt="" className="file-plate__img" />
-        <div className="file-plate__name">{file.name}</div>
-        <div className="file-plate__btns" style={{ display: "flex", flexDirection: "column" }}>
+        {
+          file.type === "Folder"
+            ?
+            <Folder size={44} />
+            :
+            <FileIcon size={44} />
+        }
+        <div className="line-clamp-2 file-plate__name">{file.name}</div>
+        <div className="file-plate__btns" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           {file.type !== "Folder" &&
-            <StyledButton onClick={e => decryptClickHandler(e)}
-                          className="file-plate__btn file-plate__download">Decrypt</StyledButton>}
-          <StyledButton onClick={e => deleteClickHandler(e)}
-                        className="file-plate__btn file-plate__delete">Delete</StyledButton>
+            <AnimatedButton text="Decrypt" onClick={decryptClickHandler}>
+              <LockKeyholeOpen />
+            </AnimatedButton>
+          }
+          <AnimatedButton text="Delete" onClick={deleteClickHandler}>
+            <Trash2 />
+          </AnimatedButton>
         </div>
       </div>
     );

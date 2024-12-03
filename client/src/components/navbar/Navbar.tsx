@@ -1,12 +1,14 @@
 import React, { ChangeEventHandler, useState } from "react";
-import "./navbar.less";
-import { Link, NavLink } from "react-router-dom";
+import styles from "./navbar.module.less";
 import { logout } from "@/reducers/userReducer";
 import { getFiles, searchFiles } from "@/actions/file";
 import { showLoader } from "@/reducers/appReducer";
-import avatarLogo from "../../assets/img/avatar.svg";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
-import { CircleUserRound, Cloud } from "lucide-react";
+import { CircleUserRound, Cloud, KeySquare, LogOut, UserRoundPlus } from "lucide-react";
+import AnimatedButton from "@/components/button/AnimatedButton";
+import AnimatedLink from "../link/AnimatedLink";
+import AnimatedLogo from "@/components/logo/AnimatedLogo";
+
 
 const Navbar = () => {
   const isAuth = useAppSelector(state => state.user.isAuth);
@@ -31,20 +33,36 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar">
-      <div className="container">
-        <Cloud className="navbar__logo" color = "#B0B0B0"/>
-        <Link className="navbar__header" style={{ textDecorationLine: "none" }} to={"/"}>SECURE CLOUD</Link>
-        {isAuth && <input
-          value={searchName}
-          onChange={searchChangeHandler}
-          className="navbar__search"
-          type="text"
-          placeholder="File name..." />}
-        {!isAuth && <div className="navbar__login navbar__btns"><NavLink to="/login">Login</NavLink></div>}
-        {!isAuth && <div className="navbar__registration navbar__btns"><NavLink to="/registration">Registration</NavLink></div>}
-        {isAuth && <div className="navbar__login navbar__btns" onClick={() => dispatch(logout())}>Logout</div>}
-        {isAuth && <CircleUserRound className="navbar__avatar"/>}
+    <div className={styles.navbar}>
+      <div className={styles.container}>
+        <AnimatedLogo text={"SECURE CLOUD"} to={"/"}>
+          <Cloud color="#B0B0B0" size={32} />
+        </AnimatedLogo>
+        {
+          isAuth ? // If user authorized
+            <>
+              <input
+                value={searchName}
+                onChange={searchChangeHandler}
+                className={styles.search}
+                type="text"
+                placeholder="File name..." />
+              <AnimatedButton text="Logout" className={styles.offset_btn}
+                              onClick={() => dispatch(logout())}>
+                <LogOut />
+              </AnimatedButton>
+              <CircleUserRound className="size-10" />
+            </>
+            : // If user not authorized
+            <>
+              <AnimatedLink text={"Login"} className={styles.offset_btn} to="/login">
+                <KeySquare/>
+              </AnimatedLink>
+              <AnimatedLink text={"Registration"} to="/registration">
+                <UserRoundPlus/>
+              </AnimatedLink>
+            </>
+        }
       </div>
     </div>
   );

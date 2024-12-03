@@ -4,7 +4,7 @@ import { hideAskPass, setCryptPass } from "@/reducers/uploadReducer";
 import { decryptFile, uploadFileEncrypted } from "@/actions/file";
 import { X, LockKeyhole, LockKeyholeOpen } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
-import { StyledButton } from "@/components/Button";
+import AnimatedButton from "@/components/button/AnimatedButton";
 
 const customStyles = {
   content: {
@@ -16,7 +16,13 @@ const customStyles = {
     minWidth: "300px",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    backgroundColor: "#3a3a3a"
+    border: "none",
+    borderRadius: "10px",
+    width: "40%",
+    backgroundColor: "#313131"
+  },
+  overlay: {
+    background: "#00000080", // Semi-transparent black background, adjust opacity as needed, e.g., "0.5B"
   }
 };
 
@@ -41,9 +47,9 @@ export const AskPass = () => {
         </div>
         <input type={"password"} placeholder={"Enter encryption key"}
                onChange={e => dispatch(setCryptPass(e.target.value))} />
-        <div style={{ display: "flex", margin: "8px", justifyContent: "space-between", alignItems: "center" }}>
-          <StyledButton onClick={() => dispatch(hideAskPass())}><X /></StyledButton>
-          <StyledButton onClick={() => {
+        <div className={"flex m-2 mt-6 justify-between items-center"}>
+          <AnimatedButton text="Close" onClick={() => dispatch(hideAskPass())}><X /></AnimatedButton>
+          <AnimatedButton text={currentAction === "upload" ? "Encrypt" : "Decrypt"} onClick={() => {
             if (currentAction === "upload")
               dispatch(uploadFileEncrypted(uploadFile!, pass));
             else if (currentAction === "download")
@@ -51,9 +57,9 @@ export const AskPass = () => {
             dispatch(hideAskPass());
           }}>
             {
-              currentAction === "upload" ? <LockKeyhole /> : <LockKeyholeOpen />
+              currentAction === "upload" ? <LockKeyhole/> : <LockKeyholeOpen/>
             }
-          </StyledButton>
+          </AnimatedButton>
         </div>
       </Modal>
     </div>

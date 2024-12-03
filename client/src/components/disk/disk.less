@@ -8,19 +8,19 @@
     align-items: center;
   }
 
-  &__create {
-    margin-left: 10px;
-  }
-
   &__upload-input {
     display: none;
   }
 
   &__upload-label {
+    display: flex;
+    align-items: center;
+    text-align: center;
     border: 2px dashed #de6e57;
     padding: 5px 10px;
     cursor: pointer;
     margin-left: 10px;
+    user-select: none;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     &:hover {
       background-color: #575757; /* Lighter dark shade on hover */
@@ -68,7 +68,7 @@
 
   &__content {
     width: 400px;
-    background: #3a3a3a;
+    background: #313131;
     padding: 20px;
     border-radius: 12px;
     display: flex;
@@ -77,11 +77,6 @@
 
   &__create {
     align-self: flex-end;
-  }
-
-  &__header {
-    display: flex;
-    justify-content: space-between;
   }
 
   input {

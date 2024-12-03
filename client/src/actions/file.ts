@@ -113,27 +113,6 @@ export function uploadFileEncrypted(fileProps: UploadFileType, key: string) {
   };
 }
 
-
-export function downloadFile(file: IFile) {
-  axios.get(`${API_URL}api/files/download?id=${file.id}`, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`
-    },
-    responseType: "blob"
-  }).then(response => {
-    if (response.status === 200) {
-      const blob = new Blob([response.data]);
-      const downloadUrl = window.URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = downloadUrl;
-      link.download = file.name;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    }
-  });
-}
-
 export function askForDecryptPass(file: IFile) {
   return async (dispatch: DispatchType) => {
     dispatch(setCurrentAction("download"));

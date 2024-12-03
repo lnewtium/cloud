@@ -1,6 +1,7 @@
 @import "../../../../utils/colors";
 
 .file {
+  transition: all 0.2s;
   margin: 10px 0;
   border-bottom: solid 2px @font-color ;
   display: grid;
@@ -9,9 +10,6 @@
 
   &:hover {
     transform: scale(1.02);
-  }
-  &__img {
-    justify-self: center;
   }
 
   &__date {
@@ -22,9 +20,6 @@
     grid-column-start: 6;
     justify-self: center;
   }
-  &__btn {
-    display: none;
-  }
 
   &:hover &__date {
     grid-column-start: 3;
@@ -32,23 +27,16 @@
   &:hover &__size {
     grid-column-start: 4;
   }
-  &:hover &__download {
-    grid-column-start: 5;
-    display: block;
-  }
-  &:hover &__delete {
-    grid-column-start: 6;
-    display: block;
-  }
 }
 
 .file-plate {
   width: 150px;
-  height: 150px;
+  height: 200px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   &__img {
     height: 100px;
     width: 100px;
@@ -58,5 +46,9 @@
   }
   &:hover &__btns {
     display: flex;
+  }
+  &__name {
+    line-height: 2.5ex;
+    height: 5ex; /* 2.5ex for each visible line */
   }
 }

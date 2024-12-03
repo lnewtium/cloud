@@ -10,8 +10,8 @@ export const StyledSelect = styled.select`
     text-transform: uppercase;
     color: #fff; /* Light text color for contrast */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    width: 200px;
     outline: none;
+    user-select: none;
 
     &:hover {
         background-color: #575757; /* Darker shade on hover */

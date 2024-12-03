@@ -5,13 +5,14 @@ export const StyledButton = styled.button`
     padding: 8px 16px;
     margin: 4px;
     font-size: 16px;
-    border-radius: 4px;
+    border-radius: 6px;
     border: none;
     color: white; /* White text for contrast */
     cursor: pointer;
     text-transform: uppercase;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-
+    user-select: none;
+    
     &:hover {
         background-color: #575757; /* Lighter dark shade on hover */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */

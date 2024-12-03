@@ -1,0 +1,37 @@
+@import "../../utils/colors";
+
+.search {
+  width: 200px;
+  margin-left: 30px;
+  transition: all 0.2s;
+
+  &:focus, &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.offset_btn {
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+.navbar {
+  /* Make the navbar stay on top of the content, even when scrolling down */
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 50px;
+
+  background-color: #3a3a3a;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  min-width: 900px;
+  width: 60vw;
+  padding: 0 5rem;
+  display: flex;
+  align-items: center;
+}
