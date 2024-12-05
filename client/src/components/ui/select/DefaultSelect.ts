@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledSelect = styled.select`
-    background-color: #414141; /* Dark primary color */
+    background: linear-gradient(90deg, rgba(65,65,65,0.8197479675463936) 0%, rgba(97,97,97,0.3127451664259454) 53%, rgba(79,79,79,0.5984594521402311) 100%);
     padding: 8px 16px;
     font-size: 16px;
     border-radius: 4px;

@@ -14,7 +14,7 @@ const initialState: IInitialState = {
   currentDir: null,
   popupDisplay: "none",
   dirStack: [],
-  view: "list"
+  view: "plate"
 };
 
 const fileSlice = createSlice({

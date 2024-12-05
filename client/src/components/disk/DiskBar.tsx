@@ -2,13 +2,13 @@ import {
   ChangeEventHandler,
   MouseEventHandler
 } from "react";
-import { StyledSelect } from "@/components/Select";
+import { StyledSelect } from "@/components/ui/select/DefaultSelect";
 import { setCurrentDir, setFileView, setPopupDisplay } from "@/reducers/fileReducer";
 import { AlignJustify, CircleChevronLeft, FileUp, FolderPlus, Grip } from "lucide-react";
 import "./disk.less";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import { uploadFile } from "@/actions/file";
-import AnimatedButton from "@/components/button/AnimatedButton";
+import DefaultButton from "@/components/ui/button/DefaultButton";
 
 const DiskBar = ({ sort, setSort }: { sort: string, setSort: (value: string) => void }) => {
   const dispatch = useAppDispatch();
@@ -35,15 +35,14 @@ const DiskBar = ({ sort, setSort }: { sort: string, setSort: (value: string) => 
     files.forEach(file => dispatch(uploadFile(file, currentDir)));
   };
 
-  // @ts-ignore
   return (
     <div className="disk__btns">
-      <AnimatedButton text="" onClick={backClickHandler}><CircleChevronLeft /></AnimatedButton>
-      <AnimatedButton text="Create folder"
-                      onClick={() => dispatch(setPopupDisplay("flex"))}><FolderPlus /></AnimatedButton>
+      <DefaultButton text="" onClick={backClickHandler}><CircleChevronLeft color="#de6e57"/></DefaultButton>
+      <DefaultButton text="Create folder"
+                      onClick={() => dispatch(setPopupDisplay("flex"))}><FolderPlus color="#de6e57"/></DefaultButton>
       <div className="group">
         <label htmlFor="disk__upload-input" className="disk__upload-label">
-          <FileUp className={"mr-1 group-hover:-translate-x-1 transition-all duration-75"} />
+          <FileUp className={"mr-1 group-hover:scale-125 transition-all duration-75"} color="#de6e57"/>
           Upload file
         </label>
         <input multiple={true} onClick={clearFileInput} onChange={fileUploadHandler} type="file"

@@ -5,9 +5,10 @@ import { getFiles, searchFiles } from "@/actions/file";
 import { showLoader } from "@/reducers/appReducer";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import { CircleUserRound, Cloud, KeySquare, LogOut, UserRoundPlus } from "lucide-react";
-import AnimatedButton from "@/components/button/AnimatedButton";
-import AnimatedLink from "../link/AnimatedLink";
-import AnimatedLogo from "@/components/logo/AnimatedLogo";
+import DefaultButton from "@/components/ui/button/DefaultButton";
+import AnimatedLink from "@/components/navbar/link/AnimatedLink";
+import AnimatedLogo from "@/components/navbar/logo/AnimatedLogo";
+import Input from "@/utils/input/Input";
 
 
 const Navbar = () => {
@@ -36,30 +37,34 @@ const Navbar = () => {
     <div className={styles.navbar}>
       <div className={styles.container}>
         <AnimatedLogo text={"SECURE CLOUD"} to={"/"}>
-          <Cloud color="#B0B0B0" size={32} />
+          <Cloud color="#c65139" size={32} />
         </AnimatedLogo>
         {
           isAuth ? // If user authorized
             <>
-              <input
-                value={searchName}
-                onChange={searchChangeHandler}
-                className={styles.search}
-                type="text"
-                placeholder="File name..." />
-              <AnimatedButton text="Logout" className={styles.offset_btn}
+              <form autoComplete="off"> {/* Use form to break autofill*/}
+                <Input
+                  value={searchName}
+                  onChange={searchChangeHandler}
+                  classnameBox={styles.search}
+                  type="text"
+                  id="search"
+                  autoComplete="off"
+                  placeholder="Search..." />
+              </form>
+              <DefaultButton text="Logout" className={styles.offset_btn}
                               onClick={() => dispatch(logout())}>
-                <LogOut />
-              </AnimatedButton>
-              <CircleUserRound className="size-10" />
+                <LogOut color="#de6e57" />
+              </DefaultButton>
+              <CircleUserRound className="min-w-10 max-w-10" size={40} color="#c65139" />
             </>
             : // If user not authorized
             <>
               <AnimatedLink text={"Login"} className={styles.offset_btn} to="/login">
-                <KeySquare/>
+                <KeySquare color="#de6e57" />
               </AnimatedLink>
               <AnimatedLink text={"Registration"} to="/registration">
-                <UserRoundPlus/>
+                <UserRoundPlus color="#de6e57" />
               </AnimatedLink>
             </>
         }

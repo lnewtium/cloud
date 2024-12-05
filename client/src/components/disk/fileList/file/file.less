@@ -1,9 +1,10 @@
-@import "../../../../utils/colors";
+@import "../../../../utils/global";
 
 .file {
+  background: linear-gradient(90deg, rgba(38, 38, 38, 0.5788516090029762) 0%, rgba(97, 97, 97, 0.37717093673406865) 53%, rgba(38, 38, 38, 0.6320728975183824) 100%);
+  border-radius: 10px;
   transition: all 0.2s;
   margin: 10px 0;
-  border-bottom: solid 2px @font-color ;
   display: grid;
   grid-template-columns: 1fr 4fr repeat(4, 1fr);
   align-items: center;
@@ -15,7 +16,9 @@
   &__date {
     grid-column-start: 5;
     justify-self: center;
+    text-align: center;
   }
+
   &__size {
     grid-column-start: 6;
     justify-self: center;
@@ -24,31 +27,38 @@
   &:hover &__date {
     grid-column-start: 3;
   }
+
   &:hover &__size {
     grid-column-start: 4;
   }
 }
 
+.card {
+  background: linear-gradient(0deg, rgba(38, 38, 38, 0.5788516090029762) 0%, rgba(97, 97, 97, 0.37717093673406865) 53%, rgba(38, 38, 38, 0.6320728975183824) 100%);
+  border-radius: 10px;
+  border: none;
+  margin: 6px;
+}
+
 .file-plate {
-  width: 150px;
-  height: 200px;
-  cursor: pointer;
-  display: flex;
+  width: 180px;
+  height: 180px;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  &__img {
-    height: 100px;
-    width: 100px;
-  }
-  &__btns {
-    display: none;
-  }
-  &:hover &__btns {
-    display: flex;
-  }
+  display: flex;
+  justify-content: center;
+
   &__name {
     line-height: 2.5ex;
     height: 5ex; /* 2.5ex for each visible line */
   }
+}
+
+.dropdown {
+  background: linear-gradient(90deg, rgba(59,59,59,0.58) 0%, rgba(87,87,87,0.38) 53%, rgba(57,57,57,0.63) 100%);   border: none;
+  border-radius: 10px;
+  margin-top: 4px;
+  padding: 8px 8px;
+  text-align: center;
 }

@@ -4,7 +4,8 @@ import { hideAskPass, setCryptPass } from "@/reducers/uploadReducer";
 import { decryptFile, uploadFileEncrypted } from "@/actions/file";
 import { X, LockKeyhole, LockKeyholeOpen } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
-import AnimatedButton from "@/components/button/AnimatedButton";
+import DefaultButton from "@/components/ui/button/DefaultButton";
+import Input from "@/utils/input/Input";
 
 const customStyles = {
   content: {
@@ -22,7 +23,7 @@ const customStyles = {
     backgroundColor: "#313131"
   },
   overlay: {
-    background: "#00000080", // Semi-transparent black background, adjust opacity as needed, e.g., "0.5B"
+    background: "#00000080" // Semi-transparent black background, adjust opacity as needed, e.g., "0.5B"
   }
 };
 
@@ -45,11 +46,11 @@ export const AskPass = () => {
         <div className={"mb-4"}>
           Provide encryption passphrase
         </div>
-        <input type={"password"} placeholder={"Enter encryption key"}
+        <Input type="password" id="passphrase" autoComplete="off" placeholder="Enter encryption key"
                onChange={e => dispatch(setCryptPass(e.target.value))} />
         <div className={"flex m-2 mt-6 justify-between items-center"}>
-          <AnimatedButton text="Close" onClick={() => dispatch(hideAskPass())}><X /></AnimatedButton>
-          <AnimatedButton text={currentAction === "upload" ? "Encrypt" : "Decrypt"} onClick={() => {
+          <DefaultButton text="Close" onClick={() => dispatch(hideAskPass())}><X color="#de6e57" /></DefaultButton>
+          <DefaultButton text={currentAction === "upload" ? "Encrypt" : "Decrypt"} onClick={() => {
             if (currentAction === "upload")
               dispatch(uploadFileEncrypted(uploadFile!, pass));
             else if (currentAction === "download")
@@ -57,9 +58,9 @@ export const AskPass = () => {
             dispatch(hideAskPass());
           }}>
             {
-              currentAction === "upload" ? <LockKeyhole/> : <LockKeyholeOpen/>
+              currentAction === "upload" ? <LockKeyhole color="#de6e57" /> : <LockKeyholeOpen color="#de6e57" />
             }
-          </AnimatedButton>
+          </DefaultButton>
         </div>
       </Modal>
     </div>

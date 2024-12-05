@@ -6,9 +6,9 @@ import React, {
 import { getFiles, uploadFile } from "@/actions/file";
 import FileList from "./fileList/FileList.js";
 import "./disk.less";
-import Popup from "./Popup";
+import CreateFolder from "../popup/CreateFolder";
 import Uploader from "./uploader/Uploader";
-import { AskPass } from "../askpass/AskPass";
+import { AskPass } from "../popup/AskPass";
 import Modal from "react-modal";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import DiskBar from "@/components/disk/DiskBar";
@@ -61,7 +61,7 @@ const Disk = () => {
       <div className="disk" onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>
         <DiskBar sort={sort} setSort={setSort}/>
         <FileList />
-        <Popup />
+        <CreateFolder />
         <Uploader />
         <AskPass />
       </div>
