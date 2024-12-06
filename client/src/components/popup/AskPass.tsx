@@ -5,7 +5,7 @@ import { decryptFile, uploadFileEncrypted } from "@/actions/file";
 import { X, LockKeyhole, LockKeyholeOpen } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import DefaultButton from "@/components/ui/button/DefaultButton";
-import Input from "@/utils/input/Input";
+import Input from "@/components/ui/input/Input";
 
 const customStyles = {
   content: {

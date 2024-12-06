@@ -5,7 +5,7 @@ import React, {
 } from "react";
 import { getFiles, uploadFile } from "@/actions/file";
 import FileList from "./fileList/FileList.js";
-import "./disk.less";
+import styles from "./disk.module.css";
 import CreateFolder from "../popup/CreateFolder";
 import Uploader from "./uploader/Uploader";
 import { AskPass } from "../popup/AskPass";
@@ -29,19 +29,19 @@ const Disk = () => {
     dispatch(getFiles(currentDir, sort));
   }, [currentDir, sort]);
 
-  const dragEnterHandler: DragEventHandler<HTMLDivElement> = (e) => {
+  const dragEnterHandler: DragEventHandler<HTMLDivElement> = e => {
     e.preventDefault();
     e.stopPropagation();
     setDragEnter(true);
   };
 
-  const dragLeaveHandler: DragEventHandler<HTMLDivElement> = (e) => {
+  const dragLeaveHandler: DragEventHandler<HTMLDivElement> = e => {
     e.preventDefault();
     e.stopPropagation();
     setDragEnter(false);
   };
 
-  const dropHandler: DragEventHandler<HTMLDivElement> = (e) => {
+  const dropHandler: DragEventHandler<HTMLDivElement> = e => {
     e.preventDefault();
     e.stopPropagation();
     let files = [...e.dataTransfer.files];
@@ -51,22 +51,23 @@ const Disk = () => {
 
   if (loader) {
     return (
-      <div className="loader">
-        <div className="lds-dual-ring"></div>
+      <div className={styles.loader}>
+        <div className={styles.ldsDualRing}></div>
       </div>
     );
   }
 
   return (!dragEnter ?
-      <div className="disk" onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>
-        <DiskBar sort={sort} setSort={setSort}/>
+      <div className="mt-5" onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>
+        <DiskBar sort={sort} setSort={setSort} />
         <FileList />
         <CreateFolder />
         <Uploader />
         <AskPass />
       </div>
       :
-      <div className="drop-area" onDrop={dropHandler} onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler}
+      <div className={styles.dropArea} onDrop={dropHandler} onDragEnter={dragEnterHandler}
+           onDragLeave={dragLeaveHandler}
            onDragOver={dragEnterHandler}>
         Drop files there
       </div>

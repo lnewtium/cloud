@@ -1,6 +1,6 @@
 import { FC, useRef } from "react";
 import { subProps } from "@/components/disk/fileList/file/File";
-import "./file.less";
+import "./file.css";
 import { EllipsisVertical, ExternalLink, File as FileIcon, Folder, LockKeyholeOpen, Trash2 } from "lucide-react";
 import DefaultButton from "@/components/ui/button/DefaultButton";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -24,7 +24,7 @@ const FilePlateStyled: FC<subProps> = ({ file, clickHandler, decryptClickHandler
             :
             <FileIcon size={80} color="#de6e57" className="file-plate__icon" />
         }
-        <div className="line-clamp-2 file-plate__name">{file.name}</div>
+        <span className="line-clamp-2 h-[5ex] leading-snug">{file.name}</span>
       </CardContent>
 
       <CardFooter className="h-10 flex items-center p-0 pb-2">

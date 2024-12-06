@@ -1,5 +1,5 @@
 import React from "react";
-import "./fileList.less";
+import "./fileList.css";
 import File from "./file/File.js";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { useAppSelector } from "@/hooks/redux-ts";
@@ -27,11 +27,11 @@ const FileList = () => {
 
   if (fileView === "list") {
     return (
-      <div className="filelist">
-        <div className="filelist__header">
-          <div className="filelist__name">Name</div>
-          <div className="filelist__date">Date</div>
-          <div className="filelist__size">Size</div>
+      <div className="my-5 mx-0">
+        <div className="grid grid-cols-[1fr_4fr_repeat(4,1fr)] ">
+          <div className="grid-cols-2">Name</div>
+          <div className="grid-cols-5 justify-self-center">Date</div>
+          <div className="grid-cols-6 justify-self-center">Size</div>
         </div>
         <TransitionGroup>
           {files.map(file =>

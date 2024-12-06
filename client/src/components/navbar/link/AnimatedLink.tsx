@@ -1,6 +1,6 @@
 import { FC, ReactElement } from "react";
-import { Link } from "react-router-dom";
-import styles from "./AnimatedLink.module.less";
+import { Link } from "react-router";
+import styles from "./AnimatedLink.module.css";
 
 type propsType = {
   children: ReactElement,

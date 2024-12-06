@@ -1,6 +1,6 @@
 import React from "react";
 import UploadFile from "./UploadFile";
-import "./uploader.less";
+import "./uploader.css";
 import { hideUploader } from "@/reducers/uploadReducer";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 

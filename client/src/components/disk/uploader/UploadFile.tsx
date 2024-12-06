@@ -1,5 +1,5 @@
 import React from "react";
-import "./uploader.less";
+import "./uploader.css";
 import { removeUploadFile } from "@/reducers/uploadReducer";
 import { useAppDispatch } from "@/hooks/redux-ts";
 

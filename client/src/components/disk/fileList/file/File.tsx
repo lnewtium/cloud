@@ -1,5 +1,5 @@
 import { FC, MouseEventHandler } from "react";
-import "./file.less";
+import "./file.css";
 import { pushToStack, setCurrentDir } from "@/reducers/fileReducer";
 import { askForDecryptPass, deleteFile } from "@/actions/file";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";

@@ -6,7 +6,7 @@ import { subProps } from "@/components/disk/fileList/file/File";
 
 const FileListStyled: FC<subProps> = ({ file, clickHandler, decryptClickHandler, deleteClickHandler }) => {
   return (
-    <div className="group file hover:cursor-pointer" onClick={clickHandler}>
+    <div className="group file hover:cursor-pointer hover:scale-[1.02]" onClick={clickHandler}>
       {
         file.type === "Folder"
           ?
@@ -14,9 +14,9 @@ const FileListStyled: FC<subProps> = ({ file, clickHandler, decryptClickHandler,
           :
           <FileIcon size={40} color="#de6e57" />
       }
-      <div className="file__name">{file.name}</div>
-      <div className="file__date">{file.date.slice(0, 10)}</div>
-      <div className="file__size">{sizeFormat(file.size)}</div>
+      <span className="file__name">{file.name}</span>
+      <span className="justify-self-center text-center grid-cols-5 group-hover:grid-cols-3">{file.date.slice(0, 10)}</span>
+      <span className="justify-self-center text-center grid-cols-6 group-hover:grid-cols-4">{sizeFormat(file.size)}</span>
       {file.type !== "Folder" &&
         <DefaultButton text="Decrypt" onClick={decryptClickHandler}
                         className="hidden group-hover:col-start-5 group-hover:block">

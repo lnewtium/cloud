@@ -1,6 +1,6 @@
 import { FC, ReactElement } from "react";
-import { Link } from "react-router-dom";
-import styles from "./AnimatedLogo.module.less";
+import { Link } from "react-router";
+import styles from "./AnimatedLogo.module.css";
 import { cn } from "@/lib/utils";
 
 type propsType = {

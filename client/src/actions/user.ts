@@ -4,17 +4,16 @@ import { API_URL } from "@/config";
 import { IUser } from "@/types/user";
 import { DispatchType } from "@/reducers";
 
-export const registration = async (email: string, password: string) => {
+export const registration = (email: string, password: string) => {
   type IRes = {
     token: string,
     message: string
   }
   try {
-    const response = await axios.post<IRes>(`${API_URL}api/auth/registration`, {
+    axios.post<IRes>(`${API_URL}api/auth/registration`, {
       email,
       password
-    });
-    alert(response.data.message);
+    }).then(response => alert(response.data.message));
   } catch (e) {
     // @ts-ignore
     alert(e.response.data.message);

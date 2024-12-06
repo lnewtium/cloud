@@ -1,5 +1,5 @@
 import React, { ChangeEventHandler, useState } from "react";
-import styles from "./navbar.module.less";
+import styles from "./navbar.module.css";
 import { logout } from "@/reducers/userReducer";
 import { getFiles, searchFiles } from "@/actions/file";
 import { showLoader } from "@/reducers/appReducer";
@@ -8,7 +8,7 @@ import { CircleUserRound, Cloud, KeySquare, LogOut, UserRoundPlus } from "lucide
 import DefaultButton from "@/components/ui/button/DefaultButton";
 import AnimatedLink from "@/components/navbar/link/AnimatedLink";
 import AnimatedLogo from "@/components/navbar/logo/AnimatedLogo";
-import Input from "@/utils/input/Input";
+import Input from "@/components/ui/input/Input";
 
 
 const Navbar = () => {
