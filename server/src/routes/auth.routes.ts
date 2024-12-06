@@ -55,7 +55,7 @@ router.post(
         id: 0,
       });
       const token = jwt.sign({ id: user.id }, config.secretKey, {
-        expiresIn: "1h",
+        expiresIn: "24h",
       });
       res.json({ message: "User was created", token: token });
     } catch (e) {
@@ -77,7 +77,7 @@ router.post("/login", async (req: express.Request, res: express.Response) => {
       return res.status(400).json({ message: "Invalid password" });
     }
     const token = jwt.sign({ id: user.id }, config.secretKey, {
-      expiresIn: "1h",
+      expiresIn: "24h",
     });
     return res.json({
       token,

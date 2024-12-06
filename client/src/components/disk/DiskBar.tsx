@@ -37,12 +37,13 @@ const DiskBar = ({ sort, setSort }: { sort: string, setSort: (value: string) => 
 
   return (
     <div className="disk__btns">
-      <DefaultButton text="" onClick={backClickHandler}><CircleChevronLeft color="#de6e57"/></DefaultButton>
-      <DefaultButton text="Create folder"
-                      onClick={() => dispatch(setPopupDisplay("flex"))}><FolderPlus color="#de6e57"/></DefaultButton>
+      <DefaultButton text="" onClick={backClickHandler}><CircleChevronLeft color="#de6e57" /></DefaultButton>
+      <DefaultButton text="Create folder" onClick={() => dispatch(setPopupDisplay("flex"))}>
+        <FolderPlus color="#de6e57" />
+      </DefaultButton>
       <div className="group">
         <label htmlFor="disk__upload-input" className="disk__upload-label">
-          <FileUp className={"mr-1 group-hover:scale-125 transition-all duration-75"} color="#de6e57"/>
+          <FileUp className={"mr-1 group-hover:scale-125 transition-all duration-75"} color="#de6e57" />
           Upload file
         </label>
         <input multiple={true} onClick={clearFileInput} onChange={fileUploadHandler} type="file"
