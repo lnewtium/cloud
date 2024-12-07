@@ -20,13 +20,10 @@
   padding: 3px;
   user-select: none;
   transition: width 0.3s ease;
+  outline: none;
 
   &:focus, &:not(:placeholder-shown) {
     width: 100%;
-  }
-
-  &:focus, &:hover {
-    outline: none;
   }
 }
 
