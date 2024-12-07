@@ -71,11 +71,13 @@ const FilePlateStyled: FC<subProps> = ({
             </SlimButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="rounded-[10px] border-none mt-1 p-2 text-center
-                      bg-gradient-to-b
-                    from-[#313131] 0%
-                    via-[#414141] 53%
-                    to-[#393939] 100%">
+            className="rounded-[10px] mt-1 p-2 text-center
+                      border-[#ef9f8c] border-2
+                      shadow-2xl
+                      bg-gradient-to-t
+                    from-[#212121] 0%
+                    via-[#2b2b2b] 53%
+                    to-[#292929] 100%">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem className="outline-0">
               <DefaultButton text="Delete" onClick={deleteClickHandler}>
