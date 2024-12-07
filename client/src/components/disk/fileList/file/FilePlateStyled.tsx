@@ -1,54 +1,81 @@
 import { FC, useRef } from "react";
 import { subProps } from "@/components/disk/fileList/file/File";
-import "./file.css";
-import { EllipsisVertical, ExternalLink, File as FileIcon, Folder, LockKeyholeOpen, Trash2 } from "lucide-react";
+import {
+  EllipsisVertical,
+  ExternalLink,
+  File as FileIcon,
+  Folder,
+  LockKeyholeOpen,
+  Trash2,
+} from "lucide-react";
 import DefaultButton from "@/components/ui/button/DefaultButton";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   DropdownMenu,
-  DropdownMenuContent, DropdownMenuItem,
+  DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
 import SlimButton from "@/components/ui/button/SlimButton";
 
-const FilePlateStyled: FC<subProps> = ({ file, clickHandler, decryptClickHandler, deleteClickHandler }) => {
+const FilePlateStyled: FC<subProps> = ({
+  file,
+  clickHandler,
+  decryptClickHandler,
+  deleteClickHandler,
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   return (
-    <Card className="card outline-0 group">
-      <CardContent className="file-plate hover:cursor-pointer p-0" onClick={clickHandler}>
-        {
-          file.type === "Folder"
-            ?
-            <Folder size={80} color="#de6e57" className="file-plate__icon" />
-            :
-            <FileIcon size={80} color="#de6e57" className="file-plate__icon" />
-        }
+    <Card
+      className="outline-0 group rounded-[10px] border-0 m-1.5 bg-[]
+                  bg-gradient-to-b
+                  from-[#26262694] 0%
+                  via-[#61616160] 53%
+                  to-[#262626a1] 100%">
+      <CardContent
+        className="w-[180px] h-[180px] flex-col flex items-center text-center justify-center
+                  hover:cursor-pointer p-0"
+        onClick={clickHandler}>
+        {file.type === "Folder" ? (
+          <Folder size={80} color="#de6e57" className="file-plate__icon" />
+        ) : (
+          <FileIcon size={80} color="#de6e57" className="file-plate__icon" />
+        )}
         <span className="line-clamp-2 h-[5ex] leading-snug">{file.name}</span>
       </CardContent>
 
       <CardFooter className="h-10 flex items-center p-0 pb-2">
         <div ref={ref} className="hidden group-hover:block ml-auto">
-          {file.type !== "Folder" ?
+          {file.type !== "Folder" ? (
             <DefaultButton text="decrypt" onClick={decryptClickHandler}>
               <LockKeyholeOpen color="#de6e57" />
-            </DefaultButton> :
+            </DefaultButton>
+          ) : (
             <DefaultButton text="open" onClick={clickHandler}>
               <ExternalLink color="#de6e57" />
             </DefaultButton>
-          }
+          )}
         </div>
-        <DropdownMenu onOpenChange={(open) => {
-          if (open) {
-            ref.current?.classList.remove("hidden");
-          } else {
-            ref.current?.classList.add("hidden");
-          }
-        }}>
+        <DropdownMenu
+          onOpenChange={open => {
+            if (open) {
+              ref.current?.classList.remove("hidden");
+            } else {
+              ref.current?.classList.add("hidden");
+            }
+          }}>
           <DropdownMenuTrigger className="ml-auto outline-0">
-            <SlimButton className="ml-auto"><EllipsisVertical color="#de6e57" /></SlimButton>
+            <SlimButton className="ml-auto">
+              <EllipsisVertical color="#de6e57" />
+            </SlimButton>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="dropdown">
+          <DropdownMenuContent
+            className="rounded-[10px] border-none mt-1 p-2 text-center
+                      bg-gradient-to-b
+                    from-[#313131] 0%
+                    via-[#414141] 53%
+                    to-[#393939] 100%">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem className="outline-0">
               <DefaultButton text="Delete" onClick={deleteClickHandler}>

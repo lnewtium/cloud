@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import("tailwindcss").Config} */
 import animatePlugin from "tailwindcss-animate";
 
 export default {
@@ -46,7 +46,22 @@ export default {
         md: `calc(var(--radius) - 2px)`,
         sm: "calc(var(--radius) - 4px)",
       },
+      keyframes: {
+        appear: {
+          "0%": {
+            opacity: 0,
+            transform: "translateY(-50%)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translateY(0)",
+          },
+        },
+      },
+      animation: {
+        appear: "appear 500ms forwards",
+      },
     },
   },
   plugins: [animatePlugin],
-}
+};
