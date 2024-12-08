@@ -1,11 +1,9 @@
 .box {
-  display: flex;
   background: linear-gradient(90deg, rgba(65, 65, 65, 0.8197479675463936) 0%, rgba(97, 97, 97, 0.3127451664259454) 53%, rgba(79, 79, 79, 0.5984594521402311) 100%);
   border-radius: 10px;
-  flex-direction: column;
   cursor: text;
   width: 100%;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .box:focus-within, .box:hover {
@@ -13,13 +11,13 @@
 }
 
 .input {
-  border: none;
   border-bottom: #ed9884 solid 3px;
   background: transparent;
-  width: 50%;
+  width: 60%;
+  height: 100%;
   padding: 3px;
   user-select: none;
-  transition: width 0.3s ease;
+  transition: all 0.3s ease;
   outline: none;
 
   &:focus, &:not(:placeholder-shown) {

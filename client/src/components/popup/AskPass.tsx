@@ -13,18 +13,19 @@ const customStyles = {
     left: "50%",
     right: "auto",
     bottom: "auto",
-    padding: "16px",
+    padding: "2rem 1.5rem",
     minWidth: "300px",
-    marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     border: "none",
     borderRadius: "10px",
+    gap: "16px",
     width: "40%",
-    backgroundColor: "#313131"
+    background:
+      "linear-gradient(0deg, #262626d4 0%, #51515190 53%, #262626a1 100%)",
   },
   overlay: {
-    background: "#00000080" // Semi-transparent black background, adjust opacity as needed, e.g., "0.5B"
-  }
+    background: "#0000007f", // Semi-transparent black background
+  },
 };
 
 export const AskPass = () => {
@@ -41,25 +42,40 @@ export const AskPass = () => {
         isOpen={isOpen}
         onRequestClose={() => dispatch(hideAskPass())}
         style={customStyles}
-        contentLabel="Enter encryption key"
-      >
-        <div className={"mb-4"}>
-          Provide encryption passphrase
-        </div>
-        <Input type="password" id="passphrase" autoComplete="off" placeholder="Enter encryption key"
-               onChange={e => dispatch(setCryptPass(e.target.value))} />
-        <div className={"flex m-2 mt-6 justify-between items-center"}>
-          <DefaultButton text="Close" onClick={() => dispatch(hideAskPass())}><X color="#de6e57" /></DefaultButton>
-          <DefaultButton text={currentAction === "upload" ? "Encrypt" : "Decrypt"} onClick={() => {
-            if (currentAction === "upload")
-              dispatch(uploadFileEncrypted(uploadFile!, pass));
-            else if (currentAction === "download")
-              decryptFile(downloadFile!, pass);
-            dispatch(hideAskPass());
-          }}>
-            {
-              currentAction === "upload" ? <LockKeyhole color="#de6e57" /> : <LockKeyholeOpen color="#de6e57" />
-            }
+        contentLabel="Enter encryption key">
+        <span className="text-xl">Provide encryption passphrase</span>
+        <form autoComplete="off" className="mt-4">
+          <Input
+            type="password"
+            id="passphrase"
+            autoComplete="off"
+            classnameBox="h-16"
+            placeholder="Enter encryption key"
+            onChange={e => dispatch(setCryptPass(e.target.value))}
+          />
+        </form>
+        <div className="flex mt-6 justify-between items-center">
+          <DefaultButton
+            className="p-4"
+            text="Close"
+            onClick={() => dispatch(hideAskPass())}>
+            <X color="#de6e57" />
+          </DefaultButton>
+          <DefaultButton
+            className="p-4"
+            text={currentAction === "upload" ? "Encrypt" : "Decrypt"}
+            onClick={() => {
+              if (currentAction === "upload")
+                dispatch(uploadFileEncrypted(uploadFile!, pass));
+              else if (currentAction === "download")
+                decryptFile(downloadFile!, pass);
+              dispatch(hideAskPass());
+            }}>
+            {currentAction === "upload" ? (
+              <LockKeyhole color="#de6e57" />
+            ) : (
+              <LockKeyholeOpen color="#de6e57" />
+            )}
           </DefaultButton>
         </div>
       </Modal>

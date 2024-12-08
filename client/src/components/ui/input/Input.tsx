@@ -3,40 +3,51 @@ import styles from "./input.module.css";
 import { cn } from "@/lib/utils";
 
 type propsType = {
-  value?: string,
-  type: string,
-  placeholder: string,
-  classnameBox?: string,
-  classnameInput?: string,
-  className?: never,
-  onClick?: MouseEventHandler<HTMLInputElement>,
-  [_: string]: any
-}
+  value?: string;
+  type: string;
+  placeholder: string;
+  classnameBox?: string;
+  classnameInput?: string;
+  className?: never;
+  onClick?: MouseEventHandler<HTMLInputElement>;
+  [_: string]: any;
+};
 
-type changeType = {
-    onChange: ChangeEventHandler<HTMLInputElement>,
-    setValue?: never
-  }
+type changeType =
   | {
-  setValue: (value: string) => void,
-  onChange?: never
-}
+      onChange: ChangeEventHandler<HTMLInputElement>;
+      setValue?: never;
+    }
+  | {
+      setValue: (value: string) => void;
+      onChange?: never;
+    };
 
 const Input: React.FC<propsType & changeType> = ({
-                                                   classnameBox, classnameInput,
-                                                   setValue, value, type, placeholder, onChange, onClick, ...props
-                                                 }) => {
+  classnameBox,
+  classnameInput,
+  setValue,
+  value,
+  type,
+  placeholder,
+  onChange,
+  onClick,
+  ...props
+}) => {
   const ref = useRef<HTMLInputElement>(null);
   return (
-    <div className={cn(classnameBox, styles.box)} onClick={() => ref.current?.focus()}>
-      <input onChange={onChange ? onChange : e => setValue(e.target.value)}
-             onClick={onClick ? onClick : e => e.stopPropagation()}
-             value={value}
-             type={type}
-             ref={ref}
-             placeholder={placeholder}
-             className={cn(styles.input, classnameInput)}
-             {...props}
+    <div
+      className={cn(styles.box, classnameBox)}
+      onClick={() => ref.current?.focus()}>
+      <input
+        onChange={onChange ? onChange : e => setValue(e.target.value)}
+        onClick={onClick ? onClick : e => e.stopPropagation()}
+        value={value}
+        type={type}
+        ref={ref}
+        placeholder={placeholder}
+        className={cn(styles.input, classnameInput)}
+        {...props}
       />
     </div>
   );

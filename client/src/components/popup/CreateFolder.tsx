@@ -15,18 +15,36 @@ const CreateFolder = () => {
   return (
     <div
       className="bg-[#0000007F] w-full h-screen right-0 left-0 top-0 bottom-0 absolute flex justify-center items-center"
-      onClick={() => dispatch(setPopupDisplay("none"))} style={{ display: popupDisplay }}>
-      <div className="w-[400px] bg-[#313131] p-5 rounded-[12px] flex flex-col"
-           onClick={event => event.stopPropagation()}>
-        <div className="popup__title mb-4">Create new folder</div>
-        <form autoComplete="off" className="mb-6">
-          <Input type="text" placeholder="Enter folder name..." value={dirName} setValue={setDirName} />
+      onClick={() => dispatch(setPopupDisplay("none"))}
+      style={{ display: popupDisplay }}>
+      <div
+        className="w-[400px] gap-4 py-8 px-6 rounded-[12px] flex flex-col
+                  bg-gradient-to-b
+                  from-[#262626d4] 0%
+                  via-[#51515190] 53%
+                  to-[#262626a1] 100%"
+        onClick={event => event.stopPropagation()}>
+        <span className="text-xl">Create new folder</span>
+        <form autoComplete="off" className="mb-2">
+          <Input
+            type="text"
+            placeholder="Enter folder name..."
+            classnameBox="h-16"
+            value={dirName}
+            setValue={setDirName}
+          />
         </form>
         <div className="flex justify-between">
-          <DefaultButton text="Close" onClick={() => dispatch(setPopupDisplay("none"))}>
+          <DefaultButton
+            text="Close"
+            className="p-4"
+            onClick={() => dispatch(setPopupDisplay("none"))}>
             <X color="#de6e57" />
           </DefaultButton>
-          <DefaultButton text="Create" onClick={() => dispatch(createDir(dirName, currentDir))}>
+          <DefaultButton
+            text="Create"
+            className="p-4"
+            onClick={() => dispatch(createDir(dirName, currentDir))}>
             <FolderPlus color="#de6e57" />
           </DefaultButton>
         </div>

@@ -25,12 +25,14 @@ function App() {
               <>
                 <Route path="/login" element={<Authorization />} />
                 <Route path="/registration" element={<Authorization />} />
-                <Route path="*" element={<Navigate to="/login" />} /> {/* Redirect to login if no match */}
+                <Route path="*" element={<Navigate to="/login" />} />{" "}
+                {/* Redirect to login if no match */}
               </>
             ) : (
               <>
                 <Route path="/" element={<Disk />} />
-                <Route path="*" element={<Navigate to="/" />} /> {/* Redirect to home if no match */}
+                <Route path="*" element={<Navigate to="/" />} />{" "}
+                {/* Redirect to home if no match */}
               </>
             )}
           </Routes>

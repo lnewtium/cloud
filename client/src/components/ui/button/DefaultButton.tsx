@@ -31,6 +31,7 @@ export const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  outline: none;
 
   &:hover {
     background-color: #575757; /* Lighter dark shade on hover */
@@ -48,23 +49,16 @@ const DefaultButton: FC<propsType> = ({
   children,
   text,
   className,
-  classNameBtn,
   ...props
 }) => {
   return (
-    <div className={className}>
-      <StyledButton
-        {...props}
-        className={cn("group/btn py-2 px-4", classNameBtn)}>
-        <div
-          className={
-            "mr-1 group-hover/btn:scale-125 transition-all duration-75"
-          }>
-          {children}
-        </div>
-        {text}
-      </StyledButton>
-    </div>
+    <StyledButton {...props} className={cn("group/btn py-2 px-4", className)}>
+      <div
+        className={"mr-1 group-hover/btn:scale-125 transition-all duration-75"}>
+        {children}
+      </div>
+      {text}
+    </StyledButton>
   );
 };
 
