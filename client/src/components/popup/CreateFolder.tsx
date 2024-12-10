@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Input from "@/components/ui/input/Input";
 import { setPopupDisplay } from "@/reducers/fileReducer";
 import { createDir } from "@/actions/file";
@@ -18,7 +18,7 @@ const CreateFolder = () => {
       onClick={() => dispatch(setPopupDisplay("none"))}
       style={{ display: popupDisplay }}>
       <div
-        className="w-[400px] gap-4 py-8 px-6 rounded-[12px] flex flex-col
+        className="min-w-[400px] w-[45vmin] gap-4 py-8 px-6 rounded-[12px] flex flex-col
                   bg-gradient-to-b
                   from-[#262626d4] 0%
                   via-[#51515190] 53%

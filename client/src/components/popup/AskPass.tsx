@@ -1,4 +1,3 @@
-import React from "react";
 import Modal from "react-modal";
 import { hideAskPass, setCryptPass } from "@/reducers/uploadReducer";
 import { decryptFile, uploadFileEncrypted } from "@/actions/file";
@@ -14,12 +13,12 @@ const customStyles = {
     right: "auto",
     bottom: "auto",
     padding: "2rem 1.5rem",
-    minWidth: "300px",
+    minWidth: "400px",
     transform: "translate(-50%, -50%)",
     border: "none",
     borderRadius: "10px",
     gap: "16px",
-    width: "40%",
+    width: "45vmin",
     background:
       "linear-gradient(0deg, #262626d4 0%, #51515190 53%, #262626a1 100%)",
   },

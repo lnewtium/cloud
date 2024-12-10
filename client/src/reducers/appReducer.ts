@@ -5,20 +5,20 @@ interface IInitialState {
 }
 
 const initialState: IInitialState = {
-  loader: false
+  loader: false,
 };
 
 const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
-    showLoader: (state) => {
+    showLoader: state => {
       state.loader = true;
     },
-    hideLoader: (state) => {
+    hideLoader: state => {
       state.loader = false;
-    }
-  }
+    },
+  },
 });
 
 export const { showLoader, hideLoader } = appSlice.actions;

@@ -1,8 +1,8 @@
-import File from "./file/File";
+import FileGeneric from "./file/FileGeneric";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { useAppSelector } from "@/hooks/redux-ts";
 
-const FileList = () => {
+const FileInList = () => {
   const files = useAppSelector(state => state.files.files);
   const fileView = useAppSelector(state => state.files.view);
 
@@ -15,7 +15,7 @@ const FileList = () => {
       return (
         <div className="flex my-5 flex-wrap">
           {files.map(file => (
-            <File key={file.id} file={file} />
+            <FileGeneric key={file.id} file={file} />
           ))}
         </div>
       );
@@ -31,7 +31,7 @@ const FileList = () => {
                 }}
                 timeout={500}
                 exit={false}>
-                <File file={file} />
+                <FileGeneric file={file} />
               </CSSTransition>
             ))}
           </TransitionGroup>
@@ -40,4 +40,4 @@ const FileList = () => {
   }
 };
 
-export default FileList;
+export default FileInList;

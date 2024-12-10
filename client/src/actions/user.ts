@@ -6,14 +6,20 @@ import { DispatchType } from "@/reducers";
 
 export const registration = (email: string, password: string) => {
   type IRes = {
-    token: string,
-    message: string
-  }
+    token: string;
+    message: string;
+  };
   try {
-    axios.post<IRes>(`${API_URL}api/auth/registration`, {
-      email,
-      password
-    }).then(response => alert(response.data.message));
+    axios
+      .post<IRes>(
+        "/auth/registration",
+        {
+          email,
+          password,
+        },
+        { baseURL: API_URL },
+      )
+      .then(response => alert(response.data.message));
   } catch (e) {
     // @ts-ignore
     alert(e.response.data.message);
@@ -23,14 +29,18 @@ export const registration = (email: string, password: string) => {
 export const login = (email: string, password: string) => {
   return async (dispatch: DispatchType) => {
     type IRes = {
-      token: string,
-      user: IUser
-    }
+      token: string;
+      user: IUser;
+    };
     try {
-      const response = await axios.post<IRes>(`${API_URL}api/auth/login`, {
-        email,
-        password
-      });
+      const response = await axios.post<IRes>(
+        "/auth/login",
+        {
+          email,
+          password,
+        },
+        { baseURL: API_URL },
+      );
       dispatch(setUser(response.data.user));
       localStorage.setItem("token", response.data.token);
     } catch (e) {
@@ -43,13 +53,14 @@ export const login = (email: string, password: string) => {
 export const auth = () => {
   return async (dispatch: DispatchType) => {
     type IRes = {
-      token: string,
-      user: IUser
-    }
+      token: string;
+      user: IUser;
+    };
     try {
-      const response = await axios.get<IRes>(`${API_URL}api/auth/auth`,
-        { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
-      );
+      const response = await axios.get<IRes>("/auth/auth", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        baseURL: API_URL,
+      });
       dispatch(setUser(response.data.user));
       localStorage.setItem("token", response.data.token);
     } catch (e) {

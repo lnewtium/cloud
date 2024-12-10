@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, MouseEventHandler, useRef } from "react";
+import { ChangeEventHandler, MouseEventHandler, useRef } from "react";
 import styles from "./input.module.css";
 import { cn } from "@/lib/utils";
 

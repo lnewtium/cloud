@@ -9,17 +9,17 @@ export const store = configureStore({
     user: userReducer,
     files: fileReducer,
     upload: uploadReducer,
-    app: appReducer
+    app: appReducer,
   },
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         // Ignore these action types
         ignoredActions: ["upload/setUploadFile"],
         // Ignore these paths in the state
-        ignoredPaths: ["upload.uploadFile.content"]
-      }
-    })
+        ignoredPaths: ["upload.uploadFile.content"],
+      },
+    }),
 });
-export type StateType = ReturnType<typeof store.getState>
-export type DispatchType = typeof store.dispatch
+export type StateType = ReturnType<typeof store.getState>;
+export type DispatchType = typeof store.dispatch;

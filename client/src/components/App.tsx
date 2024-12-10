@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Navbar from "./navbar/Navbar.js";
 import "./app.css";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router";
-import Authorization from "../pages/Authorization";
+import Authorization from "../pages/Authorization/Authorization";
 import { auth } from "@/actions/user";
 import Disk from "./disk/Disk.js";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";

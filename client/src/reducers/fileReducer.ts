@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IFile, IFolder } from "@/types/file";
 
 interface IInitialState {
-  files: IFile[],
-  currentDir: IFolder | null,
-  popupDisplay: "flex" | "none",
-  dirStack: (IFolder | null)[],
-  view: "plate" | "list"
+  files: IFile[];
+  currentDir: IFolder | null;
+  popupDisplay: "flex" | "none";
+  dirStack: (IFolder | null)[];
+  view: "plate" | "list";
 }
 
 const initialState: IInitialState = {
@@ -14,7 +14,7 @@ const initialState: IInitialState = {
   currentDir: null,
   popupDisplay: "none",
   dirStack: [],
-  view: "plate"
+  view: "plate",
 };
 
 const fileSlice = createSlice({
@@ -41,8 +41,8 @@ const fileSlice = createSlice({
     },
     setFileView: (state, action: PayloadAction<"plate" | "list">) => {
       state.view = action.payload;
-    }
-  }
+    },
+  },
 });
 
 export const {
@@ -52,6 +52,6 @@ export const {
   setPopupDisplay,
   pushToStack,
   deleteFile,
-  setFileView
+  setFileView,
 } = fileSlice.actions;
 export default fileSlice.reducer;

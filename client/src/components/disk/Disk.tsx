@@ -1,10 +1,6 @@
-import React, {
-  DragEventHandler,
-  useEffect,
-  useState
-} from "react";
+import { DragEventHandler, useEffect, useState } from "react";
 import { getFiles, uploadFile } from "@/actions/file";
-import FileList from "./fileList/FileList.js";
+import FileInList from "./fileList/FileInList";
 import styles from "./disk.module.css";
 import CreateFolder from "../popup/CreateFolder";
 import Uploader from "./uploader/Uploader";
@@ -57,20 +53,27 @@ const Disk = () => {
     );
   }
 
-  return (!dragEnter ?
-      <div className="mt-5" onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>
-        <DiskBar sort={sort} setSort={setSort} />
-        <FileList />
-        <CreateFolder />
-        <Uploader />
-        <AskPass />
-      </div>
-      :
-      <div className={styles.dropArea} onDrop={dropHandler} onDragEnter={dragEnterHandler}
-           onDragLeave={dragLeaveHandler}
-           onDragOver={dragEnterHandler}>
-        Drop files there
-      </div>
+  return !dragEnter ? (
+    <div
+      className="mt-5"
+      onDragEnter={dragEnterHandler}
+      onDragLeave={dragLeaveHandler}
+      onDragOver={dragEnterHandler}>
+      <DiskBar sort={sort} setSort={setSort} />
+      <FileInList />
+      <CreateFolder />
+      <Uploader />
+      <AskPass />
+    </div>
+  ) : (
+    <div
+      className={styles.dropArea}
+      onDrop={dropHandler}
+      onDragEnter={dragEnterHandler}
+      onDragLeave={dragLeaveHandler}
+      onDragOver={dragEnterHandler}>
+      Drop files there
+    </div>
   );
 };
 

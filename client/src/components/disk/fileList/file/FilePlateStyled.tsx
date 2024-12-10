@@ -1,5 +1,5 @@
 import { FC, useRef } from "react";
-import { subProps } from "@/components/disk/fileList/file/File";
+import { subProps } from "@/components/disk/fileList/file/FileGeneric";
 import {
   EllipsisVertical,
   ExternalLink,

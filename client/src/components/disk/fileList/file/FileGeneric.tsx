@@ -13,7 +13,7 @@ export type subProps = {
   deleteClickHandler: MouseEventHandler;
 };
 
-const File: FC<{ file: IFile }> = ({ file }) => {
+const FileGeneric: FC<{ file: IFile }> = ({ file }) => {
   const dispatch = useAppDispatch();
   const currentDir = useAppSelector(state => state.files.currentDir);
   const fileView = useAppSelector(state => state.files.view);
@@ -57,4 +57,4 @@ const File: FC<{ file: IFile }> = ({ file }) => {
   );
 };
 
-export default File;
+export default FileGeneric;

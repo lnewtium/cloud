@@ -2,14 +2,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "@/types/user";
 
 interface IInitialState {
-  currentUser: IUser | {},
-  isAuth: boolean
+  currentUser: IUser | {};
+  isAuth: boolean;
 }
 
 // Initial state
 const initialState: IInitialState = {
   currentUser: {},
-  isAuth: false
+  isAuth: false,
 };
 
 // Create slice
@@ -23,12 +23,12 @@ const userSlice = createSlice({
       state.isAuth = true;
     },
     // Logout action
-    logout: (state) => {
+    logout: state => {
       localStorage.removeItem("token");
       state.currentUser = {};
       state.isAuth = false;
-    }
-  }
+    },
+  },
 });
 
 // Export actions

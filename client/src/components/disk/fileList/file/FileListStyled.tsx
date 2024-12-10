@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import sizeFormat from "@/utils/sizeFormat";
 import DefaultButton from "@/components/ui/button/DefaultButton";
-import { subProps } from "@/components/disk/fileList/file/File";
+import { subProps } from "@/components/disk/fileList/file/FileGeneric";
 
 const FileListStyled: FC<subProps> = ({
   file,

@@ -1,18 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IFile, IFolder } from "@/types/file";
 
-export type UploadFileType = { name: string, content: string | ArrayBuffer, dir: IFolder | null }
+export type UploadFileType = {
+  name: string;
+  content: string | ArrayBuffer;
+  dir: IFolder | null;
+};
 
-export type FileInUploader = { name: string, progress: number, id: number }
+export type FileInUploader = { name: string; progress: number; id: number };
 
 interface IInitialState {
-  isVisible: boolean,
-  askPass: boolean,
-  cryptPass: string,
-  uploadFile: null | UploadFileType,
-  downloadFile: null | IFile,
-  currentAction: string,
-  files: FileInUploader[]
+  isVisible: boolean;
+  askPass: boolean;
+  cryptPass: string;
+  uploadFile: null | UploadFileType;
+  downloadFile: null | IFile;
+  currentAction: string;
+  files: FileInUploader[];
 }
 
 const initialState: IInitialState = {
@@ -22,23 +26,23 @@ const initialState: IInitialState = {
   uploadFile: null,
   downloadFile: null,
   currentAction: "",
-  files: []
+  files: [],
 };
 
 const uploadSlice = createSlice({
   name: "upload",
   initialState,
   reducers: {
-    showUploader: (state) => {
+    showUploader: state => {
       state.isVisible = true;
     },
-    hideUploader: (state) => {
+    hideUploader: state => {
       state.isVisible = false;
     },
-    showAskPass: (state) => {
+    showAskPass: state => {
       state.askPass = true;
     },
-    hideAskPass: (state) => {
+    hideAskPass: state => {
       state.askPass = false;
     },
     setUploadFile: (state, action: PayloadAction<UploadFileType>) => {
@@ -64,8 +68,8 @@ const uploadSlice = createSlice({
       if (file) {
         file.progress = action.payload.progress;
       }
-    }
-  }
+    },
+  },
 });
 
 export const {
@@ -79,6 +83,6 @@ export const {
   setCryptPass,
   setDownloadFile,
   setUploadFile,
-  setCurrentAction
+  setCurrentAction,
 } = uploadSlice.actions;
 export default uploadSlice.reducer;
