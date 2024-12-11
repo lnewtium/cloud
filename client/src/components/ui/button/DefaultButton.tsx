@@ -1,5 +1,5 @@
 import { FC, ReactElement } from "react";
-import { cn } from "@/lib/utils";
+import { classTools } from "@/utils/classTools";
 import styled from "styled-components";
 
 type propsType = {
@@ -21,7 +21,6 @@ export const StyledButton = styled.button`
   font-size: 16px;
   border-radius: 6px;
   border: none;
-  color: white; /* White text for contrast */
   cursor: pointer;
   text-transform: uppercase;
   transition:
@@ -52,7 +51,9 @@ const DefaultButton: FC<propsType> = ({
   ...props
 }) => {
   return (
-    <StyledButton {...props} className={cn("group/btn py-2 px-4", className)}>
+    <StyledButton
+      {...props}
+      className={classTools("group/btn py-2 px-4", className)}>
       <div
         className={"mr-1 group-hover/btn:scale-125 transition-all duration-75"}>
         {children}

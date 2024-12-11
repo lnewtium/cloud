@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import Navbar from "./navbar/Navbar.js";
-import "./app.css";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router";
 import Authorization from "../pages/Authorization/Authorization";
 import { auth } from "@/actions/user";
-import Disk from "./disk/Disk.js";
+import Disk from "./disk/Disk";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 
 function App() {
@@ -17,9 +16,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="app">
+      <div className="flex flex-col items-center font-opensans font-normal">
         <Navbar />
-        <div className="wrap">
+        <div className="w-3/4 flex flex-col">
           <Routes>
             {!isAuth ? (
               <>

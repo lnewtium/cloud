@@ -1,7 +1,6 @@
 import { FC, useRef } from "react";
-import { subProps } from "@/components/disk/fileList/file/FileGeneric";
+import { subProps } from "@/components/disk/fileList/FileGeneric";
 import {
-  EllipsisVertical,
   ExternalLink,
   File as FileIcon,
   Folder,
@@ -17,12 +16,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
-import SlimButton from "@/components/ui/button/SlimButton";
+import DropdownTriggerPseudoButton from "@/components/disk/fileList/DropdownTriggerPseudoButton";
 
 const FilePlateStyled: FC<subProps> = ({
   file,
   clickHandler,
-  decryptClickHandler,
   deleteClickHandler,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -48,7 +46,7 @@ const FilePlateStyled: FC<subProps> = ({
       <CardFooter className="h-10 flex items-center p-0 pb-2">
         <div ref={ref} className="hidden group-hover:block ml-auto">
           {file.type !== "Folder" ? (
-            <DefaultButton text="decrypt" onClick={decryptClickHandler}>
+            <DefaultButton text="decrypt" onClick={clickHandler}>
               <LockKeyholeOpen color="#de6e57" />
             </DefaultButton>
           ) : (
@@ -66,9 +64,7 @@ const FilePlateStyled: FC<subProps> = ({
             }
           }}>
           <DropdownMenuTrigger className="ml-auto outline-0">
-            <SlimButton className="ml-auto">
-              <EllipsisVertical color="#de6e57" />
-            </SlimButton>
+            <DropdownTriggerPseudoButton />
           </DropdownMenuTrigger>
           <DropdownMenuContent
             className="rounded-[10px] mt-1 p-2 text-center

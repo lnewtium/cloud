@@ -1,6 +1,6 @@
 import { ChangeEventHandler, MouseEventHandler, useRef } from "react";
 import styles from "./input.module.css";
-import { cn } from "@/lib/utils";
+import { classTools } from "@/utils/classTools";
 
 type propsType = {
   value?: string;
@@ -37,7 +37,7 @@ const Input: React.FC<propsType & changeType> = ({
   const ref = useRef<HTMLInputElement>(null);
   return (
     <div
-      className={cn(styles.box, classnameBox)}
+      className={classTools(styles.box, classnameBox)}
       onClick={() => ref.current?.focus()}>
       <input
         onChange={onChange ? onChange : e => setValue(e.target.value)}
@@ -46,7 +46,7 @@ const Input: React.FC<propsType & changeType> = ({
         type={type}
         ref={ref}
         placeholder={placeholder}
-        className={cn(styles.input, classnameInput)}
+        className={classTools(styles.input, classnameInput)}
         {...props}
       />
     </div>

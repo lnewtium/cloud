@@ -6,6 +6,9 @@ export default {
   content: ["src/**/*.{ts,tsx}", "src/components/**/*.{ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        opensans: ["Open Sans", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

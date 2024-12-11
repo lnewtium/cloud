@@ -1,8 +1,13 @@
-import { ReactElement } from "react";
 import styled from "styled-components";
+import { EllipsisVertical } from "lucide-react";
 
-export const StyledButton = styled.button`
-  background: linear-gradient(90deg, rgba(65, 65, 65, 0.8197479675463936) 0%, rgba(97, 97, 97, 0.3127451664259454) 53%, rgba(79, 79, 79, 0.5984594521402311) 100%);
+export const StyledPseudoButton = styled.div`
+  background: linear-gradient(
+    90deg,
+    rgba(65, 65, 65, 0.8197479675463936) 0%,
+    rgba(97, 97, 97, 0.3127451664259454) 53%,
+    rgba(79, 79, 79, 0.5984594521402311) 100%
+  );
   padding: 8px;
   margin: 4px 4px 4px 0;
   font-size: 16px;
@@ -11,7 +16,9 @@ export const StyledButton = styled.button`
   color: white; /* White text for contrast */
   cursor: pointer;
   text-transform: uppercase;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
   user-select: none;
   display: flex;
   justify-content: center;
@@ -30,15 +37,15 @@ export const StyledButton = styled.button`
   }
 `;
 
-const SlimButton = ({ children, className, ...props }:
-                    { children: ReactElement, className?: string, [_: string]: any }) => {
+const DropdownTriggerPseudoButton = () => {
   return (
-    <div className={className}>
-      <StyledButton {...props} className="group/btn">
-        <div className="group-hover/btn:scale-125 transition-all duration-75">{children}</div>
-      </StyledButton>
-    </div>
+    <StyledPseudoButton className="group/btn ml-auto">
+      <EllipsisVertical
+        color="#de6e57"
+        className="group-hover/btn:scale-125 transition-all duration-75"
+      />
+    </StyledPseudoButton>
   );
 };
 
-export default SlimButton;
+export default DropdownTriggerPseudoButton;

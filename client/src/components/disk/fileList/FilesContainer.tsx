@@ -1,8 +1,8 @@
-import FileGeneric from "./file/FileGeneric";
+import FileGeneric from "./FileGeneric";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { useAppSelector } from "@/hooks/redux-ts";
 
-const FileInList = () => {
+const FilesContainer = () => {
   const files = useAppSelector(state => state.files.files);
   const fileView = useAppSelector(state => state.files.view);
 
@@ -40,4 +40,4 @@ const FileInList = () => {
   }
 };
 
-export default FileInList;
+export default FilesContainer;

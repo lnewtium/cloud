@@ -3,13 +3,12 @@ import { pushToStack, setCurrentDir } from "@/reducers/fileReducer";
 import { askForDecryptPass, deleteFile } from "@/actions/file";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import { IFile, IFolder } from "@/types/file";
-import FileListStyled from "@/components/disk/fileList/file/FileListStyled";
-import FilePlateStyled from "@/components/disk/fileList/file/FilePlateStyled";
+import FileListStyled from "@/components/disk/fileList/FileListStyled";
+import FilePlateStyled from "@/components/disk/fileList/FilePlateStyled";
 
 export type subProps = {
   file: IFile;
-  clickHandler: MouseEventHandler<HTMLDivElement>;
-  decryptClickHandler: MouseEventHandler;
+  clickHandler: MouseEventHandler;
   deleteClickHandler: MouseEventHandler;
 };
 
@@ -18,20 +17,17 @@ const FileGeneric: FC<{ file: IFile }> = ({ file }) => {
   const currentDir = useAppSelector(state => state.files.currentDir);
   const fileView = useAppSelector(state => state.files.view);
 
-  const clickHandler: MouseEventHandler<HTMLDivElement> = e => {
+  const clickHandler: MouseEventHandler = e => {
     if (file.type === "Folder") {
+      // Open dir
       if (currentDir) dispatch(pushToStack(currentDir));
       dispatch(setCurrentDir(file as IFolder));
     } else {
-      decryptClickHandler(e);
+      // Decrypt file
+      e.stopPropagation();
+      dispatch(askForDecryptPass(file));
     }
   };
-
-  const decryptClickHandler: MouseEventHandler = e => {
-    e.stopPropagation();
-    dispatch(askForDecryptPass(file));
-  };
-
   const deleteClickHandler: MouseEventHandler = e => {
     e.stopPropagation();
     dispatch(deleteFile(file));
@@ -42,7 +38,6 @@ const FileGeneric: FC<{ file: IFile }> = ({ file }) => {
       <FileListStyled
         file={file}
         clickHandler={clickHandler}
-        decryptClickHandler={decryptClickHandler}
         deleteClickHandler={deleteClickHandler}
       />
     );
@@ -51,7 +46,6 @@ const FileGeneric: FC<{ file: IFile }> = ({ file }) => {
     <FilePlateStyled
       file={file}
       clickHandler={clickHandler}
-      decryptClickHandler={decryptClickHandler}
       deleteClickHandler={deleteClickHandler}
     />
   );

@@ -5,30 +5,23 @@ import {
   deleteFile as deleteFileAction,
 } from "@/reducers/fileReducer";
 import {
-  addUploadFile,
-  changeUploadFile,
   showAskPass,
-  showUploader,
   setCurrentAction,
   setUploadFile,
   setDownloadFile,
   UploadFileType,
-  FileInUploader,
-} from "@/reducers/uploadReducer";
+} from "@/reducers/cryptReducer";
 import { hideLoader, showLoader } from "@/reducers/appReducer";
 import { API_URL } from "@/config";
 import { decryptData, encryptData } from "@/utils/crypto";
 import { DispatchType } from "@/reducers";
-import { IFile, IFileResponse, IFolder, IFolderResponse } from "@/types/file";
-
-const remapFile = (file: IFileResponse) => ({ ...file, progress: 0 }) as IFile;
-const remapFolder = remapFile as (folder: IFolderResponse) => IFolder;
+import { IFile, IFolder } from "@/types/file";
 
 export function getFiles(dir: IFolder | null, sort?: string) {
   return async (dispatch: DispatchType) => {
     try {
       dispatch(showLoader());
-      const response = await axios.get<IFileResponse[]>("/files", {
+      const response = await axios.get<IFile[]>("/files", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         params: {
           parent: dir ? dir.id : null,
@@ -36,7 +29,7 @@ export function getFiles(dir: IFolder | null, sort?: string) {
         },
         baseURL: API_URL,
       });
-      dispatch(setFiles(response.data.map(remapFile)));
+      dispatch(setFiles(response.data));
     } catch (e) {
       // @ts-ignore
       alert(e?.response?.data?.message);
@@ -49,7 +42,7 @@ export function getFiles(dir: IFolder | null, sort?: string) {
 export function createDir(name: string, dir: IFolder | null) {
   return async (dispatch: DispatchType) => {
     try {
-      const response = await axios.post<IFolderResponse>(
+      const response = await axios.post<IFolder>(
         "/files",
         {
           name,
@@ -60,7 +53,7 @@ export function createDir(name: string, dir: IFolder | null) {
           baseURL: API_URL,
         },
       );
-      dispatch(addFile(remapFolder(response.data)));
+      dispatch(addFile(response.data));
     } catch (e) {
       // @ts-ignore
       alert(e?.response?.data?.message);
@@ -108,31 +101,13 @@ export function uploadFileEncrypted(fileProps: UploadFileType, key: string) {
       if (fileProps.dir) {
         formData.append("parent", String(fileProps.dir.id));
       }
-      const uploadFile: FileInUploader = {
-        name: file.name,
-        progress: 0,
-        id: Date.now(),
-      };
-      dispatch(showUploader());
-      dispatch(addUploadFile(uploadFile));
-      const response = await axios.post<IFileResponse>(
-        "/files/upload",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          onUploadProgress: progressEvent =>
-            dispatch(
-              changeUploadFile({
-                ...uploadFile,
-                progress: Math.round(progressEvent.progress! * 100),
-              }),
-            ),
-          baseURL: API_URL,
+      const response = await axios.post<IFile>("/files/upload", formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-      );
-      dispatch(addFile(remapFile(response.data)));
+        baseURL: API_URL,
+      });
+      dispatch(addFile(response.data));
     } catch (e) {
       // @ts-ignore
       alert(e?.response?.data?.message);
@@ -199,7 +174,7 @@ export function deleteFile(file: IFile) {
 export function searchFiles(search: string) {
   return async (dispatch: DispatchType) => {
     try {
-      const response = await axios.get<IFileResponse[]>("/files/search", {
+      const response = await axios.get<IFile[]>("/files/search", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -208,7 +183,7 @@ export function searchFiles(search: string) {
         },
         baseURL: API_URL,
       });
-      dispatch(setFiles(response.data.map(remapFile)));
+      dispatch(setFiles(response.data));
     } catch (e) {
       // @ts-ignore
       alert(e?.response?.data?.message);

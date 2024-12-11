@@ -1,4 +1,4 @@
-export type IFileResponse = {
+export type IFile = {
   id: number;
   name: string;
   type: string;
@@ -10,9 +10,6 @@ export type IFileResponse = {
   userId: number;
 };
 
-export interface IFolderResponse extends IFileResponse {
+export interface IFolder extends IFile {
   type: "Folder";
 }
-
-export type IFile = IFileResponse & { progress: number };
-export type IFolder = IFolderResponse & { progress: number };

@@ -7,12 +7,11 @@ import {
 } from "lucide-react";
 import sizeFormat from "@/utils/sizeFormat";
 import DefaultButton from "@/components/ui/button/DefaultButton";
-import { subProps } from "@/components/disk/fileList/file/FileGeneric";
+import { subProps } from "@/components/disk/fileList/FileGeneric";
 
 const FileListStyled: FC<subProps> = ({
   file,
   clickHandler,
-  decryptClickHandler,
   deleteClickHandler,
 }) => {
   return (
@@ -39,7 +38,7 @@ const FileListStyled: FC<subProps> = ({
       {file.type !== "Folder" && (
         <DefaultButton
           text="Decrypt"
-          onClick={decryptClickHandler}
+          onClick={clickHandler}
           className="hidden group-hover:col-start-5 group-hover:block">
           <LockKeyholeOpen color="#de6e57" />
         </DefaultButton>

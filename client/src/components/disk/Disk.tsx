@@ -1,13 +1,11 @@
 import { DragEventHandler, useEffect, useState } from "react";
 import { getFiles, uploadFile } from "@/actions/file";
-import FileInList from "./fileList/FileInList";
-import styles from "./disk.module.css";
+import FilesContainer from "./fileList/FilesContainer";
 import CreateFolder from "../popup/CreateFolder";
-import Uploader from "./uploader/Uploader";
 import { AskPass } from "../popup/AskPass";
-import Modal from "react-modal";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import DiskBar from "@/components/disk/DiskBar";
+import { LoaderCircle } from "lucide-react";
 
 const Disk = () => {
   const dispatch = useAppDispatch();
@@ -15,11 +13,6 @@ const Disk = () => {
   const loader = useAppSelector(state => state.app.loader);
   const [dragEnter, setDragEnter] = useState(false);
   const [sort, setSort] = useState("type");
-
-  useEffect(() => {
-    // Set the app element for accessibility
-    Modal.setAppElement("#root");
-  }, []);
 
   useEffect(() => {
     dispatch(getFiles(currentDir, sort));
@@ -47,8 +40,8 @@ const Disk = () => {
 
   if (loader) {
     return (
-      <div className={styles.loader}>
-        <div className={styles.ldsDualRing}></div>
+      <div className="flex items-center justify-center h-[calc(100vh-50px)]">
+        <LoaderCircle size={40} className="animate-spin"></LoaderCircle>
       </div>
     );
   }
@@ -60,14 +53,14 @@ const Disk = () => {
       onDragLeave={dragLeaveHandler}
       onDragOver={dragEnterHandler}>
       <DiskBar sort={sort} setSort={setSort} />
-      <FileInList />
+      <FilesContainer />
       <CreateFolder />
-      <Uploader />
       <AskPass />
     </div>
   ) : (
     <div
-      className={styles.dropArea}
+      className="w-full h-[calc(100vh-90px)] flex items-center justify-center
+                text-4xl m-5 border-dashed border-2 border-[var(--font-color)]"
       onDrop={dropHandler}
       onDragEnter={dragEnterHandler}
       onDragLeave={dragLeaveHandler}

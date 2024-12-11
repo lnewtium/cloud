@@ -12,7 +12,6 @@ import {
   FolderPlus,
   Grip,
 } from "lucide-react";
-import "./disk.module.css";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import { uploadFile } from "@/actions/file";
 import DefaultButton from "@/components/ui/button/DefaultButton";

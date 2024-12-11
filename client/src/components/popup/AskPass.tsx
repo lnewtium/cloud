@@ -1,47 +1,25 @@
-import Modal from "react-modal";
-import { hideAskPass, setCryptPass } from "@/reducers/uploadReducer";
 import { decryptFile, uploadFileEncrypted } from "@/actions/file";
 import { X, LockKeyhole, LockKeyholeOpen } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import DefaultButton from "@/components/ui/button/DefaultButton";
 import Input from "@/components/ui/input/Input";
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    padding: "2rem 1.5rem",
-    minWidth: "400px",
-    transform: "translate(-50%, -50%)",
-    border: "none",
-    borderRadius: "10px",
-    gap: "16px",
-    width: "45vmin",
-    background:
-      "linear-gradient(0deg, #262626d4 0%, #51515190 53%, #262626a1 100%)",
-  },
-  overlay: {
-    background: "#0000007f", // Semi-transparent black background
-  },
-};
+import { hideAskPass, setCryptPass } from "@/reducers/cryptReducer";
 
 export const AskPass = () => {
   const dispatch = useAppDispatch();
-  const isOpen = useAppSelector(state => state.upload.askPass);
-  const uploadFile = useAppSelector(state => state.upload.uploadFile);
-  const downloadFile = useAppSelector(state => state.upload.downloadFile);
-  const pass = useAppSelector(state => state.upload.cryptPass);
-  const currentAction = useAppSelector(state => state.upload.currentAction);
+  const { isModalOpen, uploadFile, downloadFile, cryptPass, currentAction } =
+    useAppSelector(state => state.crypt);
 
   return (
-    <div>
-      <Modal
-        isOpen={isOpen}
-        onRequestClose={() => dispatch(hideAskPass())}
-        style={customStyles}
-        contentLabel="Enter encryption key">
+    <div
+      className={`bg-[#0000007F] w-full h-screen right-0 left-0 top-0 bottom-0 absolute justify-center items-center ${isModalOpen ? "flex" : "hidden"}`}
+      onClick={() => dispatch(hideAskPass())}>
+      <div
+        className="min-w-[400px] w-[45vmin] gap-4 py-8 px-6 rounded-[12px] flex flex-col
+                  bg-gradient-to-b
+                  from-[#262626d4] 0%
+                  via-[#51515190] 53%
+                  to-[#262626a1] 100%">
         <span className="text-xl">Provide encryption passphrase</span>
         <form autoComplete="off" className="mt-4">
           <Input
@@ -65,9 +43,9 @@ export const AskPass = () => {
             text={currentAction === "upload" ? "Encrypt" : "Decrypt"}
             onClick={() => {
               if (currentAction === "upload")
-                dispatch(uploadFileEncrypted(uploadFile!, pass));
+                dispatch(uploadFileEncrypted(uploadFile!, cryptPass));
               else if (currentAction === "download")
-                decryptFile(downloadFile!, pass);
+                decryptFile(downloadFile!, cryptPass);
               dispatch(hideAskPass());
             }}>
             {currentAction === "upload" ? (
@@ -77,7 +55,7 @@ export const AskPass = () => {
             )}
           </DefaultButton>
         </div>
-      </Modal>
+      </div>
     </div>
   );
 };

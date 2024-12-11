@@ -1,15 +1,21 @@
 import styled from "styled-components";
 
 export const StyledSelect = styled.select`
-  background: linear-gradient(90deg, rgba(65, 65, 65, 0.8197479675463936) 0%, rgba(97, 97, 97, 0.3127451664259454) 53%, rgba(79, 79, 79, 0.5984594521402311) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(65, 65, 65, 0.8197479675463936) 0%,
+    rgba(97, 97, 97, 0.3127451664259454) 53%,
+    rgba(79, 79, 79, 0.5984594521402311) 100%
+  );
   padding: 8px 16px;
   font-size: 16px;
   border-radius: 4px;
   border: none;
   cursor: pointer;
   text-transform: uppercase;
-  color: #fff; /* Light text color for contrast */
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
   outline: none;
   user-select: none;
 

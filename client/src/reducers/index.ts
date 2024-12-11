@@ -1,14 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userReducer";
 import fileReducer from "./fileReducer.js";
-import uploadReducer from "./uploadReducer";
+import cryptReducer from "./cryptReducer";
 import appReducer from "./appReducer.js";
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     files: fileReducer,
-    upload: uploadReducer,
+    crypt: cryptReducer,
     app: appReducer,
   },
   middleware: getDefaultMiddleware =>
