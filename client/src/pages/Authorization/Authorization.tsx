@@ -26,27 +26,28 @@ const Authorization = () => {
   };
 
   return (
-    <div
-      className="mt-[calc(25vh)] flex flex-col w-[500px] rounded-[20px] p-[30px] self-center
+    <div className="flex justify-center items-center h-[calc(100vh-50px)]">
+      <div
+        className="flex flex-col min-w-[500px] w-[45vmin] h-[45vmin] min-h-[500px] rounded-[20px] p-[30px] self-center
                     bg-gradient-to-b
                     from-[#26262694] 0%
                     via-[#61616160] 53%
                     to-[#262626a1] 100%">
-      <Tabs defaultValue={location.pathname.slice(1)} className="w-full">
-        <TabsList
-          className="flex h-20 justify-between items-center gap-5 p-1 rounded-[10px]
+        <Tabs defaultValue={location.pathname.slice(1)} className="w-full">
+          <TabsList
+            className="flex h-20 justify-between items-center gap-5 p-1 rounded-[10px]
                             bg-gradient-to-b
                           from-[#3f3f3f44] 0%
                           via-[#6d6d6d60] 53%
                           to-[#3b3b3ba1] 100%">
-          <TabButton path="login">
-            <KeySquare color="#de6e57" size={40} />
-          </TabButton>
-          <TabButton path="registration">
-            <UserRoundPlus color="#de6e57" size={40} />
-          </TabButton>
-          <span
-            className="absolute flex p-0 border-0 rounded-[10px] h-[72px] w-[206px]
+            <TabButton path="login">
+              <KeySquare color="#de6e57" size={40} />
+            </TabButton>
+            <TabButton path="registration">
+              <UserRoundPlus color="#de6e57" size={40} />
+            </TabButton>
+            <span
+              className="absolute flex p-0 border-0 rounded-[10px] h-[72px] w-[206px]
                           bg-gradient-to-br peer
                         from-[#414141d1] 0%
                         via-[#61616150] 53%
@@ -54,69 +55,70 @@ const Authorization = () => {
                           transition-transform
                           duration-300
                           peer-data-[state=active]/registration:translate-x-[226px]"
-          />
-        </TabsList>
+            />
+          </TabsList>
 
-        <TabContentForm value="login" onSubmit={onSubmitLogin}>
-          <span className="text-[30px] font-bold tracking-wider">
-            Authorization
-          </span>
-          <Input
-            id="email"
-            autoComplete="email"
-            classnameBox="my-2.5 h-16"
-            value={email}
-            setValue={setEmail}
-            type="text"
-            placeholder="Enter email..."
-          />
-          <Input
-            id="password"
-            autoComplete="current-password"
-            classnameBox="my-2.5 h-16"
-            value={password}
-            setValue={setPassword}
-            type="password"
-            placeholder="Enter password..."
-          />
-          <DefaultButton
-            type="submit"
-            className="ml-auto mt-4 p-4"
-            text="SUBMIT">
-            <Send color="#de6e57" />
-          </DefaultButton>
-        </TabContentForm>
+          <TabContentForm value="login" onSubmit={onSubmitLogin}>
+            <span className="text-[30px] font-bold tracking-wider">
+              Authorization
+            </span>
+            <Input
+              id="email"
+              autoComplete="email"
+              classnameBox="my-2.5 h-16"
+              value={email}
+              setValue={setEmail}
+              type="text"
+              placeholder="Enter email..."
+            />
+            <Input
+              id="password"
+              autoComplete="current-password"
+              classnameBox="my-2.5 h-16"
+              value={password}
+              setValue={setPassword}
+              type="password"
+              placeholder="Enter password..."
+            />
+            <DefaultButton
+              type="submit"
+              className="ml-auto mt-4 p-4"
+              text="SUBMIT">
+              <Send color="#de6e57" />
+            </DefaultButton>
+          </TabContentForm>
 
-        <TabContentForm value="registration" onSubmit={onSubmitReg}>
-          <span className="text-[30px] font-bold tracking-wider">
-            New account
-          </span>
-          <Input
-            id="email"
-            autoComplete="email"
-            classnameBox="my-2.5 h-16"
-            value={email}
-            setValue={setEmail}
-            type="text"
-            placeholder="Enter email..."
-          />
-          <Input
-            id="password"
-            autoComplete="new-password"
-            classnameBox="my-2.5 h-16"
-            value={password}
-            setValue={setPassword}
-            type="password"
-            placeholder="Enter password..."
-          />
-          <DefaultButton
-            type="submit"
-            className="ml-auto mt-4 p-4"
-            text="SUBMIT">
-            <Send color="#de6e57" />
-          </DefaultButton>
-        </TabContentForm>
-      </Tabs>
+          <TabContentForm value="registration" onSubmit={onSubmitReg}>
+            <span className="text-[30px] font-bold tracking-wider">
+              New account
+            </span>
+            <Input
+              id="email"
+              autoComplete="email"
+              classnameBox="my-2.5 h-16"
+              value={email}
+              setValue={setEmail}
+              type="text"
+              placeholder="Enter email..."
+            />
+            <Input
+              id="password"
+              autoComplete="new-password"
+              classnameBox="my-2.5 h-16"
+              value={password}
+              setValue={setPassword}
+              type="password"
+              placeholder="Enter password..."
+            />
+            <DefaultButton
+              type="submit"
+              className="ml-auto mt-4 p-4"
+              text="SUBMIT">
+              <Send color="#de6e57" />
+            </DefaultButton>
+          </TabContentForm>
+        </Tabs>
+      </div>
     </div>
   );
 };
