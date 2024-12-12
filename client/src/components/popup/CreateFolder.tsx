@@ -4,7 +4,7 @@ import { setPopupDisplay } from "@/reducers/fileReducer";
 import { createDir } from "@/actions/file";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import { FolderPlus, X } from "lucide-react";
-import DefaultButton from "@/components/ui/button/DefaultButton";
+import DefaultButton from "@/components/ui/DefaultButton";
 
 const CreateFolder = () => {
   const [dirName, setDirName] = useState("");

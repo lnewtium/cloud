@@ -6,7 +6,6 @@ type propsType = {
   children: ReactElement;
   text: string;
   className?: string;
-  classNameBtn?: string;
   [_: string]: any;
 };
 
@@ -54,8 +53,7 @@ const DefaultButton: FC<propsType> = ({
     <StyledButton
       {...props}
       className={classTools("group/btn py-2 px-4", className)}>
-      <div
-        className={"mr-1 group-hover/btn:scale-125 transition-all duration-75"}>
+      <div className="mr-1 group-hover/btn:scale-125 transition-all duration-75">
         {children}
       </div>
       {text}

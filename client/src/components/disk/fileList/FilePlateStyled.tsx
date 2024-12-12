@@ -7,7 +7,7 @@ import {
   LockKeyholeOpen,
   Trash2,
 } from "lucide-react";
-import DefaultButton from "@/components/ui/button/DefaultButton";
+import DefaultButton from "@/components/ui/DefaultButton";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   DropdownMenu,

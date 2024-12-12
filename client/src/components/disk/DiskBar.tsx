@@ -1,5 +1,5 @@
 import { ChangeEventHandler, MouseEventHandler } from "react";
-import { StyledSelect } from "@/components/ui/select/DefaultSelect";
+import { StyledSelect } from "@/components/ui/DefaultSelect";
 import {
   setCurrentDir,
   setFileView,
@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import { uploadFile } from "@/actions/file";
-import DefaultButton from "@/components/ui/button/DefaultButton";
+import DefaultButton from "@/components/ui/DefaultButton";
 
 const DiskBar = ({
   sort,

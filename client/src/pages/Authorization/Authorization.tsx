@@ -3,7 +3,7 @@ import Input from "@/components/ui/input/Input";
 import { login, registration } from "@/actions/user";
 import { useAppDispatch } from "@/hooks/redux-ts";
 import { KeySquare, Send, UserRoundPlus } from "lucide-react";
-import DefaultButton from "@/components/ui/button/DefaultButton";
+import DefaultButton from "@/components/ui/DefaultButton";
 import { Tabs, TabsList } from "@radix-ui/react-tabs";
 import { useLocation } from "react-router";
 import TabContentForm from "@/pages/Authorization/TabContentForm";

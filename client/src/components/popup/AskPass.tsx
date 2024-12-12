@@ -1,7 +1,7 @@
 import { decryptFile, uploadFileEncrypted } from "@/actions/file";
 import { X, LockKeyhole, LockKeyholeOpen } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
-import DefaultButton from "@/components/ui/button/DefaultButton";
+import DefaultButton from "@/components/ui/DefaultButton";
 import Input from "@/components/ui/input/Input";
 import { hideAskPass, setCryptPass } from "@/reducers/cryptReducer";
 

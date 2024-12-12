@@ -6,7 +6,7 @@ import {
   Trash2,
 } from "lucide-react";
 import sizeFormat from "@/utils/sizeFormat";
-import DefaultButton from "@/components/ui/button/DefaultButton";
+import DefaultButton from "@/components/ui/DefaultButton";
 import { subProps } from "@/components/disk/fileList/FileGeneric";
 
 const FileListStyled: FC<subProps> = ({

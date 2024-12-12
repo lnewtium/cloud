@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import Navbar from "./navbar/Navbar.js";
+import Navbar from "./components/navbar/Navbar";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router";
-import Authorization from "../pages/Authorization/Authorization";
+import Authorization from "./pages/Authorization/Authorization";
 import { auth } from "@/actions/user";
-import Disk from "./disk/Disk";
+import Disk from "./components/disk/Disk";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 
 function App() {
