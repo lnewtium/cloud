@@ -63,6 +63,10 @@ export function createDir(name: string, dir: IFolder | null) {
 
 export function uploadFile(file: File, dir: IFolder | null) {
   return async (dispatch: DispatchType) => {
+    if (file.size > 10 * 1024 * 1024) {
+      alert("File is too big (>10MB)");
+      return;
+    }
     try {
       const formData = new FormData();
       formData.append("file", file);
