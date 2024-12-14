@@ -14,7 +14,8 @@ import {
 } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import { uploadFile } from "@/actions/file";
-import DefaultButton from "@/components/ui/DefaultButton";
+import DefaultButton from "@/components/ui/button/DefaultButton";
+import SlimButton from "@/components/ui/button/SlimButton";
 
 const DiskBar = ({
   sort,
@@ -48,26 +49,26 @@ const DiskBar = ({
   };
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center gap-1">
       <DefaultButton text="" onClick={backClickHandler}>
         <CircleChevronLeft color="#de6e57" />
       </DefaultButton>
-      <DefaultButton
+      <SlimButton
         text="Create folder"
         onClick={() => dispatch(setPopupDisplay("flex"))}>
         <FolderPlus color="#de6e57" />
-      </DefaultButton>
+      </SlimButton>
       <div className="group">
         <label
           htmlFor="upload-input"
           className="flex items-center text-center border-2 border-dashed transition-all duration-300
-                        border-[#de6e57] py-[5px] px-2.5 cursor-pointer ml-2.5 select-none
-                        hover:bg-[#57575799]">
+                        border-[#de6e57] py-[5px] px-1 md:px-2.5 cursor-pointer ml-2.5 select-none
+                        hover:bg-[#57575799] text-nowrap">
           <FileUp
-            className={"mr-1 group-hover:scale-125 transition-all duration-75"}
+            className="md:mr-1 group-hover:scale-125 transition-all duration-75"
             color="#de6e57"
           />
-          Upload file
+          <span className="hidden text-nowrap md:block">Upload file</span>
         </label>
         <input
           multiple={true}
@@ -81,19 +82,19 @@ const DiskBar = ({
       <StyledSelect
         value={sort}
         onChange={e => setSort(e.target.value)}
-        className="ml-auto">
+        className="ml-4 sm:ml-auto">
         <option value="name">By Name</option>
         <option value="type">By Type</option>
         <option value="date">By Date</option>
       </StyledSelect>
       <button
-        className="border-0 outline-0 cursor-pointer my-0
+        className="border-0 outline-0 cursor-pointer my-0 hidden sm:block
                         mx-2.5 transition-transform duration-100 hover:scale-125"
         onClick={() => dispatch(setFileView("plate"))}>
         <Grip color="#de6e57" size={32} />
       </button>
       <button
-        className="border-0 outline-0 cursor-pointer my-0
+        className="border-0 outline-0 cursor-pointer my-0 hidden sm:block
                         mx-2.5 transition-transform duration-100 hover:scale-125"
         onClick={() => dispatch(setFileView("list"))}>
         <AlignJustify color="#de6e57" size={32} />

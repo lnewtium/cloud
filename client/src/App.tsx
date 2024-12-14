@@ -18,7 +18,7 @@ function App() {
     <BrowserRouter>
       <div className="flex flex-col items-center font-opensans font-normal">
         <Navbar />
-        <div className="w-3/4 flex flex-col">
+        <div className="w-full sm:w-3/4 px-1 sm:px-0 flex flex-col">
           <Routes>
             {!isAuth ? (
               <>

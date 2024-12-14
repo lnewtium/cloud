@@ -33,7 +33,7 @@ const Search = () => {
   };
 
   return (
-    <form autoComplete="off" className="grow">
+    <form autoComplete="off" className="grow hidden md:block">
       {/* Use form to break autofill*/}
       <Input
         onChange={searchChangeHandler}

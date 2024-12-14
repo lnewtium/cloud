@@ -167,7 +167,6 @@ export function deleteFile(file: IFile) {
         baseURL: API_URL,
       });
       dispatch(deleteFileAction(file));
-      alert(response.data.message);
     } catch (e) {
       // @ts-ignore
       alert(e?.response?.data?.message);

@@ -4,7 +4,7 @@ import { setPopupDisplay } from "@/reducers/fileReducer";
 import { createDir } from "@/actions/file";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import { FolderPlus, X } from "lucide-react";
-import DefaultButton from "@/components/ui/DefaultButton";
+import DefaultButton from "@/components/ui/button/DefaultButton";
 
 const CreateFolder = () => {
   const [dirName, setDirName] = useState("");
@@ -20,8 +20,8 @@ const CreateFolder = () => {
       <div
         className="min-w-[400px] w-[45vmin] gap-4 py-8 px-6 rounded-[12px] flex flex-col
                   bg-gradient-to-b
-                  from-[#262626d4] 0%
-                  via-[#51515190] 53%
+                  from-[#212121d4] 0%
+                  via-[#3a3a3aa9] 53%
                   to-[#262626a1] 100%"
         onClick={event => event.stopPropagation()}>
         <span className="text-xl">Create new folder</span>

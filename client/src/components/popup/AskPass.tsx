@@ -1,7 +1,7 @@
 import { decryptFile, uploadFileEncrypted } from "@/actions/file";
 import { X, LockKeyhole, LockKeyholeOpen } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
-import DefaultButton from "@/components/ui/DefaultButton";
+import DefaultButton from "@/components/ui/button/DefaultButton";
 import Input from "@/components/ui/input/Input";
 import { hideAskPass, setCryptPass } from "@/reducers/cryptReducer";
 
@@ -12,13 +12,13 @@ export const AskPass = () => {
 
   return (
     <div
-      className={`bg-[#0000007F] w-full h-screen right-0 left-0 top-0 bottom-0 absolute justify-center items-center ${isModalOpen ? "flex" : "hidden"}`}
+      className={`bg-[#0000007F] w-screen h-screen right-0 left-0 top-0 bottom-0 absolute justify-center items-center ${isModalOpen ? "flex" : "hidden"}`}
       onClick={() => dispatch(hideAskPass())}>
       <div
         className="min-w-[400px] w-[45vmin] gap-4 py-8 px-6 rounded-[12px] flex flex-col
                   bg-gradient-to-b
-                  from-[#262626d4] 0%
-                  via-[#51515190] 53%
+                  from-[#212121d4] 0%
+                  via-[#3a3a3aa9] 53%
                   to-[#262626a1] 100%"
         onClick={event => event.stopPropagation()}>
         <span className="text-xl">Provide encryption passphrase</span>

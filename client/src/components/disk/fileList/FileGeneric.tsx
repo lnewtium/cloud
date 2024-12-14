@@ -9,7 +9,6 @@ import FilePlateStyled from "@/components/disk/fileList/FilePlateStyled";
 export type subProps = {
   file: IFile;
   clickHandler: MouseEventHandler;
-  deleteClickHandler: MouseEventHandler;
 };
 
 const FileGeneric: FC<{ file: IFile }> = ({ file }) => {
@@ -28,27 +27,11 @@ const FileGeneric: FC<{ file: IFile }> = ({ file }) => {
       dispatch(askForDecryptPass(file));
     }
   };
-  const deleteClickHandler: MouseEventHandler = e => {
-    e.stopPropagation();
-    dispatch(deleteFile(file));
-  };
 
   if (fileView === "list") {
-    return (
-      <FileListStyled
-        file={file}
-        clickHandler={clickHandler}
-        deleteClickHandler={deleteClickHandler}
-      />
-    );
+    return <FileListStyled file={file} clickHandler={clickHandler} />;
   }
-  return (
-    <FilePlateStyled
-      file={file}
-      clickHandler={clickHandler}
-      deleteClickHandler={deleteClickHandler}
-    />
-  );
+  return <FilePlateStyled file={file} clickHandler={clickHandler} />;
 };
 
 export default FileGeneric;

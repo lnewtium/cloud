@@ -5,24 +5,12 @@ import {
   File as FileIcon,
   Folder,
   LockKeyholeOpen,
-  Trash2,
 } from "lucide-react";
-import DefaultButton from "@/components/ui/DefaultButton";
+import DefaultButton from "@/components/ui/button/DefaultButton";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
-import DropdownTriggerPseudoButton from "@/components/disk/fileList/DropdownTriggerPseudoButton";
+import ActionsDropdown from "@/components/disk/fileList/actions/ActionsDropdown";
 
-const FilePlateStyled: FC<subProps> = ({
-  file,
-  clickHandler,
-  deleteClickHandler,
-}) => {
+const FilePlateStyled: FC<subProps> = ({ file, clickHandler }) => {
   const ref = useRef<HTMLDivElement>(null);
   return (
     <Card
@@ -55,33 +43,7 @@ const FilePlateStyled: FC<subProps> = ({
             </DefaultButton>
           )}
         </div>
-        <DropdownMenu
-          onOpenChange={open => {
-            if (open) {
-              ref.current?.classList.remove("hidden");
-            } else {
-              ref.current?.classList.add("hidden");
-            }
-          }}>
-          <DropdownMenuTrigger className="ml-auto outline-0">
-            <DropdownTriggerPseudoButton />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            className="rounded-[10px] mt-1 p-2 text-center
-                      border-[#ef9f8c] border-2
-                      shadow-2xl
-                      bg-gradient-to-t
-                    from-[#212121] 0%
-                    via-[#2b2b2b] 53%
-                    to-[#292929] 100%">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem className="outline-0">
-              <DefaultButton text="Delete" onClick={deleteClickHandler}>
-                <Trash2 color="#de6e57" />
-              </DefaultButton>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <ActionsDropdown refProp={ref} file={file} className="ml-auto" />
       </CardFooter>
     </Card>
   );

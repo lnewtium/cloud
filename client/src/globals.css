@@ -42,7 +42,6 @@
   /* Dark background color */
   --font-color: var(--foreground);
   /* Light text color */
-  min-width: 700px;
   background-color: var(--background);
 }
 

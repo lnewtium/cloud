@@ -1,23 +1,20 @@
 import { FC } from "react";
 import {
+  ExternalLink,
   File as FileIcon,
   Folder,
   LockKeyholeOpen,
-  Trash2,
 } from "lucide-react";
 import sizeFormat from "@/utils/sizeFormat";
-import DefaultButton from "@/components/ui/DefaultButton";
 import { subProps } from "@/components/disk/fileList/FileGeneric";
+import ActionsDropdown from "@/components/disk/fileList/actions/ActionsDropdown";
+import SlimButton from "@/components/ui/button/SlimButton";
 
-const FileListStyled: FC<subProps> = ({
-  file,
-  clickHandler,
-  deleteClickHandler,
-}) => {
+const FileListStyled: FC<subProps> = ({ file, clickHandler }) => {
   return (
     <div
-      className="group grid grid-cols-[1fr_4fr_repeat(4,1fr)] items-center rounded-[10px] transition-all 
-                  duration-200 my-2.5 hover:cursor-pointer hover:scale-[1.02]
+      className="flex sm:grid sm:grid-cols-[1fr_4fr_repeat(2,1fr)_2fr_1fr] items-center rounded-[10px] transition-all
+                  duration-200 my-2.5 cursor-pointer
                   bg-gradient-to-r
                   from-[#26262694] 0%
                   via-[#61616160] 53%
@@ -28,27 +25,27 @@ const FileListStyled: FC<subProps> = ({
       ) : (
         <FileIcon size={40} color="#de6e57" />
       )}
-      <span>{file.name}</span>
-      <span className="justify-self-center text-center grid-cols-5 group-hover:grid-cols-3">
+      <span className="select-none col-start-2">{file.name}</span>
+      <span className="select-none justify-self-center text-center col-start-3 hidden sm:block">
         {file.date.slice(0, 10)}
       </span>
-      <span className="justify-self-center text-center grid-cols-6 group-hover:grid-cols-4">
+      <span className="select-none justify-self-center text-center col-start-4 hidden sm:block">
         {sizeFormat(file.size)}
       </span>
-      {file.type !== "Folder" && (
-        <DefaultButton
-          text="Decrypt"
-          onClick={clickHandler}
-          className="hidden group-hover:col-start-5 group-hover:block">
+      <SlimButton
+        text={`${file.type === "Folder" ? "Open" : "Decrypt"}`}
+        onClick={clickHandler}
+        className="col-start-5 ml-auto sm:ml-0">
+        {file.type === "Folder" ? (
+          <ExternalLink color="#de6e57" />
+        ) : (
           <LockKeyholeOpen color="#de6e57" />
-        </DefaultButton>
-      )}
-      <DefaultButton
-        text="Delete"
-        onClick={deleteClickHandler}
-        className="hidden group-hover:col-start-6 group-hover:block">
-        <Trash2 color="#de6e57" />
-      </DefaultButton>
+        )}
+      </SlimButton>
+      <ActionsDropdown
+        file={file}
+        className="col-start-6 justify-self-center"
+      />
     </div>
   );
 };

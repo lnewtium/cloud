@@ -5,7 +5,7 @@ const AnimatedLogo = () => {
   return (
     <Link
       to="/"
-      className="group py-2 px-4 rounded-[6px] border-none cursor-pointer
+      className="group py-2 px-4 rounded-[6px] border-none cursor-pointer text-nowrap
                 transition-colors duration-300 ease-in-out select-none flex
                 items-center hover:bg-gradient-to-r
                 from-[#414141d1] 0%
