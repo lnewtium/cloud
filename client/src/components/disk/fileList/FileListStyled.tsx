@@ -35,7 +35,7 @@ const FileListStyled: FC<subProps> = ({ file, clickHandler }) => {
       <SlimButton
         text={`${file.type === "Folder" ? "Open" : "Decrypt"}`}
         onClick={clickHandler}
-        className="col-start-5 ml-auto sm:ml-0">
+        className="col-start-5 ml-4 sm:ml-0">
         {file.type === "Folder" ? (
           <ExternalLink color="#de6e57" />
         ) : (

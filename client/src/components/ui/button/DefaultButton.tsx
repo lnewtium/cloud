@@ -1,6 +1,5 @@
-import { FC, ReactElement } from "react";
+import { FC, MouseEventHandler, ReactElement } from "react";
 import { classTools } from "@/utils/classTools";
-import styled from "styled-components";
 
 type propsType = {
   children: ReactElement;
@@ -12,7 +11,8 @@ type propsType = {
 export const StyledButton: FC<{
   children: ReactElement[] | ReactElement;
   className?: string;
-}> = ({ children, className }) => {
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+}> = ({ children, className, onClick }) => {
   return (
     <button
       className={classTools(
@@ -23,7 +23,8 @@ export const StyledButton: FC<{
                   hover:shadow-[0_4px_6px_rgba(0,0,0,0.2)] hover:bg-[#575757] \
                   disabled:bg-[#444444] disabled:text-[#888888] disabled:cursor-not-allowed",
         className,
-      )}>
+      )}
+      onClick={onClick}>
       {children}
     </button>
   );
