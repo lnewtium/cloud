@@ -22,7 +22,8 @@ const CreateFolder = () => {
                   bg-gradient-to-b
                   from-[#212121d4] 0%
                   via-[#3a3a3aa9] 53%
-                  to-[#262626a1] 100%"
+                  to-[#262626a1] 100%
+                  backdrop-blur-sm"
         onClick={event => event.stopPropagation()}>
         <span className="text-xl">Create new folder</span>
         <form autoComplete="off" className="mb-2">

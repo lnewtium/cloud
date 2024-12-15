@@ -47,11 +47,11 @@ const Disk = () => {
   ) : (
     <div {...getRootProps()}>
       <input {...getInputProps()} />
-      <div
+      <span
         className="w-full h-[calc(100vh-90px)] flex items-center justify-center
                 text-4xl m-5 border-dashed border-2 border-[var(--font-color)]">
-        <span>Drop files there</span>
-      </div>
+        Drop files there
+      </span>
     </div>
   );
 };

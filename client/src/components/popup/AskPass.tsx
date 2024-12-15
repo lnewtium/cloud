@@ -19,7 +19,8 @@ export const AskPass = () => {
                   bg-gradient-to-b
                   from-[#212121d4] 0%
                   via-[#3a3a3aa9] 53%
-                  to-[#262626a1] 100%"
+                  to-[#262626a1] 100%
+                  backdrop-blur-sm"
         onClick={event => event.stopPropagation()}>
         <span className="text-xl">Provide encryption passphrase</span>
         <form autoComplete="off" className="mt-4">
