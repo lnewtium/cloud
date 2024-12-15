@@ -3,7 +3,7 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY pnpm-lock.yaml .
 COPY package.json .
 RUN corepack enable
-RUN pnpm ci
+RUN pnpm i --frozen-lockfile
 COPY vite.config.ts .
 COPY vite-env.d.ts .
 COPY index.html .

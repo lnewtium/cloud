@@ -5,7 +5,6 @@ import { prisma } from "@/db";
 import { AuthorizedRequest } from "@/middlewares/auth.middleware";
 import express from "express";
 import { z } from "zod";
-import * as sea from "node:sea";
 
 class FileController {
   async createDir(req: AuthorizedRequest, res: express.Response) {
