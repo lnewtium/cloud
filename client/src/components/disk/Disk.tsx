@@ -1,4 +1,4 @@
-import { DragEventHandler, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getFiles, uploadFile } from "@/actions/file";
 import FilesContainer from "./fileList/FilesContainer";
 import CreateFolder from "../popup/CreateFolder";
@@ -6,37 +6,28 @@ import { AskPass } from "../popup/AskPass";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import DiskBar from "@/components/disk/DiskBar";
 import { LoaderCircle } from "lucide-react";
+import { useCallback } from "react";
+import { DropEvent, FileRejection, useDropzone } from "react-dropzone";
 
 const Disk = () => {
   const dispatch = useAppDispatch();
   const currentDir = useAppSelector(state => state.files.currentDir);
   const loader = useAppSelector(state => state.app.loader);
-  const [dragEnter, setDragEnter] = useState(false);
   const [sort, setSort] = useState("type");
 
   useEffect(() => {
     dispatch(getFiles(currentDir, sort));
   }, [currentDir, sort]);
 
-  const dragEnterHandler: DragEventHandler<HTMLDivElement> = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragEnter(true);
-  };
+  const onDrop: (
+    acceptedFiles: File[],
+    fileRejections: FileRejection[],
+    event: DropEvent,
+  ) => void = useCallback(acceptedFiles => {
+    acceptedFiles.forEach(file => dispatch(uploadFile(file, currentDir)));
+  }, []);
 
-  const dragLeaveHandler: DragEventHandler<HTMLDivElement> = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragEnter(false);
-  };
-
-  const dropHandler: DragEventHandler<HTMLDivElement> = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    let files = [...e.dataTransfer.files];
-    files.forEach(file => dispatch(uploadFile(file, currentDir)));
-    setDragEnter(false);
-  };
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   if (loader) {
     return (
@@ -46,26 +37,21 @@ const Disk = () => {
     );
   }
 
-  return !dragEnter ? (
-    <div
-      className="mt-5"
-      onDragEnter={dragEnterHandler}
-      onDragLeave={dragLeaveHandler}
-      onDragOver={dragEnterHandler}>
+  return !isDragActive ? (
+    <div className="mt-5" {...getRootProps()}>
       <DiskBar sort={sort} setSort={setSort} />
       <FilesContainer />
       <CreateFolder />
       <AskPass />
     </div>
   ) : (
-    <div
-      className="w-full h-[calc(100vh-90px)] flex items-center justify-center
-                text-4xl m-5 border-dashed border-2 border-[var(--font-color)]"
-      onDrop={dropHandler}
-      onDragEnter={dragEnterHandler}
-      onDragLeave={dragLeaveHandler}
-      onDragOver={dragEnterHandler}>
-      Drop files there
+    <div {...getRootProps()}>
+      <input {...getInputProps()} />
+      <div
+        className="w-full h-[calc(100vh-90px)] flex items-center justify-center
+                text-4xl m-5 border-dashed border-2 border-[var(--font-color)]">
+        <span>Drop files there</span>
+      </div>
     </div>
   );
 };

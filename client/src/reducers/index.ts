@@ -15,9 +15,9 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: {
         // Ignore these action types
-        ignoredActions: ["upload/setUploadFile"],
+        ignoredActions: ["crypt/setUploadFile"],
         // Ignore these paths in the state
-        ignoredPaths: ["upload.uploadFile.content"],
+        ignoredPaths: ["crypt.uploadFile.content"],
       },
     }),
 });

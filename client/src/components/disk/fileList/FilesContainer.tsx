@@ -7,7 +7,11 @@ const FilesContainer = () => {
   const fileView = useAppSelector(state => state.files.view);
 
   if (files.length === 0) {
-    return <span>Files not found</span>;
+    return (
+      <span className="h-[calc(100vh-120px)] flex justify-center items-center">
+        Files not found
+      </span>
+    );
   }
 
   switch (fileView) {
