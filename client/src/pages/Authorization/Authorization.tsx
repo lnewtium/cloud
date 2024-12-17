@@ -33,7 +33,11 @@ const Authorization = () => {
                     from-[#26262694] 0%
                     via-[#61616160] 53%
                     to-[#262626a1] 100%">
-        <Tabs defaultValue={location.pathname.slice(1)} className="w-full">
+        <Tabs
+          defaultValue={location.pathname.substring(
+            location.pathname.lastIndexOf("/") + 1,
+          )}
+          className="w-full">
           <TabsList
             className="flex h-20 justify-between items-center gap-5 p-1 rounded-[10px]
                             bg-gradient-to-b

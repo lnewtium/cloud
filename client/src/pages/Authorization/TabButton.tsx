@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { TabsTrigger } from "@radix-ui/react-tabs";
 
 const TabButton = ({
@@ -10,8 +10,14 @@ const TabButton = ({
   children: ReactElement;
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const changeUrl = (url: string) => {
-    navigate(`/${url}`);
+    navigate(
+      `${location.pathname.substring(
+        0,
+        location.pathname.lastIndexOf("/") + 1,
+      )}${url}`,
+    );
   };
 
   const capitalize = (s: string) =>
