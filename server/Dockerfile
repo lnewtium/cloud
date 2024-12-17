@@ -4,7 +4,7 @@ COPY pnpm-lock.yaml .
 COPY prisma/ ./prisma
 RUN corepack enable
 RUN pnpm i --frozen-lockfile
-COPY config .
+COPY config/ .
 COPY src/ ./src
 COPY tsconfig.json .
 RUN pnpm run build
