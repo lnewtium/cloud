@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { TabsTrigger } from "@radix-ui/react-tabs";
+import { DEV_MODE } from "@/config";
 
 const TabButton = ({
   path,
@@ -10,14 +11,8 @@ const TabButton = ({
   children: ReactElement;
 }) => {
   const navigate = useNavigate();
-  const location = useLocation();
   const changeUrl = (url: string) => {
-    navigate(
-      `${location.pathname.substring(
-        0,
-        location.pathname.lastIndexOf("/") + 1,
-      )}${url}`,
-    );
+    navigate(`${DEV_MODE ? "/" : "/cloud/"}${url}`);
   };
 
   const capitalize = (s: string) =>
