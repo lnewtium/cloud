@@ -6,7 +6,6 @@ server/node_modules
 # dependencies
 client/node_modules
 client/dist
-client/src/config.ts
 
 server/serverFiles
 server/tsconfig.tsbuildinfo
