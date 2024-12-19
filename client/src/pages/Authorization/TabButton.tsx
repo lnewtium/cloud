@@ -1,7 +1,6 @@
 import { ReactElement } from "react";
 import { useNavigate } from "react-router";
 import { TabsTrigger } from "@radix-ui/react-tabs";
-import { DEV_MODE } from "@/config";
 
 const TabButton = ({
   path,
@@ -12,7 +11,7 @@ const TabButton = ({
 }) => {
   const navigate = useNavigate();
   const changeUrl = (url: string) => {
-    navigate(`${DEV_MODE ? "/" : "/cloud/"}${url}`);
+    navigate(`/${url}`);
   };
 
   const capitalize = (s: string) =>

@@ -5,6 +5,7 @@ import Authorization from "./pages/Authorization/Authorization";
 import { auth } from "@/actions/user";
 import Disk from "./components/disk/Disk";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
+import { DEV_MODE } from "@/config";
 
 function App() {
   const isAuth = useAppSelector(state => state.user.isAuth);
@@ -15,7 +16,7 @@ function App() {
   }, [dispatch]); // Add dispatch as a dependency
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={DEV_MODE ? "/" : "/cloud/"}>
       <div className="flex flex-col items-center font-opensans font-normal">
         <Navbar />
         <div className="w-full sm:w-3/4 px-1 sm:px-0 flex flex-col">

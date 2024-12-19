@@ -7,5 +7,6 @@ RUN pnpm i --frozen-lockfile
 COPY config/ ./config
 COPY src/ ./src
 COPY tsconfig.json .
+COPY .env .
 RUN pnpm run build
 ENTRYPOINT ["pnpm", "run", "start"]
