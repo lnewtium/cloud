@@ -15,5 +15,6 @@ RUN pnpm run build
 FROM nginx:1.26-alpine
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build ./dist/ /usr/share/nginx/html/cloud/
+COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
