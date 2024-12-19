@@ -11,6 +11,7 @@ COPY postcss.config.js .
 COPY tailwind.config.js .
 COPY tsconfig.json .
 COPY src ./src
+COPY public ./public
 RUN pnpm run build
 FROM nginx:1.26-alpine
 RUN rm -rf /usr/share/nginx/html/*
