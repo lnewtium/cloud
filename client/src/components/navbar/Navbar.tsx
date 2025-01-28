@@ -4,6 +4,7 @@ import { CircleUserRound, LogOut } from "lucide-react";
 import AnimatedLogo from "@/components/navbar/AnimatedLogo";
 import Search from "@/components/navbar/Search";
 import SlimButton from "@/components/ui/button/SlimButton";
+import { uiStrings } from "@/utils/translate";
 
 const Navbar = () => {
   const isAuth = useAppSelector(state => state.user.isAuth);
@@ -18,7 +19,9 @@ const Navbar = () => {
         {isAuth && ( // If user authorized
           <>
             <Search />
-            <SlimButton text="Logout" onClick={() => dispatch(logout())}>
+            <SlimButton
+              text={uiStrings.logout}
+              onClick={() => dispatch(logout())}>
               <LogOut color="#de6e57" />
             </SlimButton>
             <CircleUserRound
