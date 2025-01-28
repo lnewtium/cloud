@@ -1,0 +1,27 @@
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: client
+    ports:
+      - "3000:80"
+  postgres:
+    image: postgres:17-alpine
+    restart: always
+    shm_size: 128mb
+    container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: pass1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+  backend:
+    build:
+      context: server
+    container_name: backend
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - "5000:5000"

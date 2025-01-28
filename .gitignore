@@ -1,0 +1,14 @@
+# dependencies
+server/node_modules
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+.idea
+# dependencies
+client/node_modules
+client/dist
+
+server/serverFiles
+server/tsconfig.tsbuildinfo
+server/dist
+server/.env
+server/config/default.json
