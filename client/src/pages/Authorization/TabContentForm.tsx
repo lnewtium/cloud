@@ -1,15 +1,14 @@
-import { FormEventHandler, ReactNode } from "react";
+import React, { FormEventHandler } from "react";
 import { TabsContent } from "@radix-ui/react-tabs";
 
 const TabContentForm = ({
   value,
   onSubmit,
   children,
-}: {
+}: React.PropsWithChildren<{
   value: string;
   onSubmit: FormEventHandler<HTMLFormElement>;
-  children: ReactNode;
-}) => {
+}>) => {
   return (
     <TabsContent value={value} className="outline-0">
       <form

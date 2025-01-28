@@ -8,6 +8,7 @@ import { Tabs, TabsList } from "@radix-ui/react-tabs";
 import { useLocation } from "react-router";
 import TabContentForm from "@/pages/Authorization/TabContentForm";
 import TabButton from "@/pages/Authorization/TabButton";
+import { uiStrings } from "@/utils/translate";
 
 const Authorization = () => {
   const [email, setEmail] = useState("");
@@ -64,7 +65,7 @@ const Authorization = () => {
 
           <TabContentForm value="login" onSubmit={onSubmitLogin}>
             <span className="text-[30px] font-bold tracking-wider">
-              Authorization
+              {uiStrings.loginTitle}
             </span>
             <Input
               id="email"
@@ -73,7 +74,7 @@ const Authorization = () => {
               value={email}
               setValue={setEmail}
               type="text"
-              placeholder="Enter email..."
+              placeholder={uiStrings.enterEmail}
             />
             <Input
               id="password"
@@ -82,19 +83,19 @@ const Authorization = () => {
               value={password}
               setValue={setPassword}
               type="password"
-              placeholder="Enter password..."
+              placeholder={uiStrings.enterPassword}
             />
             <DefaultButton
               type="submit"
               className="ml-auto mt-4 p-4"
-              text="SUBMIT">
+              text={uiStrings.submit}>
               <Send color="#de6e57" />
             </DefaultButton>
           </TabContentForm>
 
           <TabContentForm value="registration" onSubmit={onSubmitReg}>
             <span className="text-[30px] font-bold tracking-wider">
-              New account
+              {uiStrings.registerTitle}
             </span>
             <Input
               id="email"
@@ -103,7 +104,7 @@ const Authorization = () => {
               value={email}
               setValue={setEmail}
               type="text"
-              placeholder="Enter email..."
+              placeholder={uiStrings.enterEmail}
             />
             <Input
               id="password"
@@ -112,12 +113,12 @@ const Authorization = () => {
               value={password}
               setValue={setPassword}
               type="password"
-              placeholder="Enter password..."
+              placeholder={uiStrings.enterPassword}
             />
             <DefaultButton
               type="submit"
               className="ml-auto mt-4 p-4"
-              text="SUBMIT">
+              text={uiStrings.submit}>
               <Send color="#de6e57" />
             </DefaultButton>
           </TabContentForm>

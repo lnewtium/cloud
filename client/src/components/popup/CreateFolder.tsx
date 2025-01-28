@@ -5,6 +5,7 @@ import { createDir } from "@/actions/file";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import { FolderPlus, X } from "lucide-react";
 import DefaultButton from "@/components/ui/button/DefaultButton";
+import { uiStrings } from "@/utils/translate";
 
 const CreateFolder = () => {
   const [dirName, setDirName] = useState("");
@@ -25,11 +26,11 @@ const CreateFolder = () => {
                   to-[#262626a1] 100%
                   backdrop-blur-sm"
         onClick={event => event.stopPropagation()}>
-        <span className="text-xl">Create new folder</span>
+        <span className="text-xl">{uiStrings.createNewFolder}</span>
         <form autoComplete="off" className="mb-2">
           <Input
             type="text"
-            placeholder="Enter folder name..."
+            placeholder={uiStrings.enterFolderName}
             classnameBox="h-16"
             value={dirName}
             setValue={setDirName}
@@ -37,13 +38,13 @@ const CreateFolder = () => {
         </form>
         <div className="flex justify-between">
           <DefaultButton
-            text="Close"
+            text={uiStrings.close}
             className="p-4"
             onClick={() => dispatch(setPopupDisplay("none"))}>
             <X color="#de6e57" />
           </DefaultButton>
           <DefaultButton
-            text="Create"
+            text={uiStrings.create}
             className="p-4"
             onClick={() => dispatch(createDir(dirName, currentDir))}>
             <FolderPlus color="#de6e57" />

@@ -1,4 +1,4 @@
-import { ChangeEventHandler, MouseEventHandler, useRef } from "react";
+import React, { ChangeEventHandler, MouseEventHandler, useRef } from "react";
 import styles from "./input.module.css";
 import { classTools } from "@/utils/classTools";
 
@@ -23,7 +23,7 @@ type changeType =
       onChange?: never;
     };
 
-const Input: React.FC<propsType & changeType> = ({
+const Input = ({
   classnameBox,
   classnameInput,
   setValue,
@@ -33,7 +33,7 @@ const Input: React.FC<propsType & changeType> = ({
   onChange,
   onClick,
   ...props
-}) => {
+}: propsType & changeType) => {
   const ref = useRef<HTMLInputElement>(null);
   return (
     <div

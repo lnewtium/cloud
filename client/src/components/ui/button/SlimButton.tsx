@@ -1,15 +1,17 @@
-import { FC, ReactElement } from "react";
+import React, { ReactElement } from "react";
 import { classTools } from "@/utils/classTools";
 import { StyledButton } from "@/components/ui/button/DefaultButton";
 
-type propsType = {
-  children: ReactElement;
+const SlimButton = ({
+  children,
+  text,
+  className,
+  ...props
+}: React.PropsWithChildren<{
   text: string;
   className?: string;
   [_: string]: any;
-};
-
-const SlimButton: FC<propsType> = ({ children, text, className, ...props }) => {
+}>) => {
   return (
     <StyledButton
       {...props}

@@ -1,6 +1,7 @@
 import FileGeneric from "./FileGeneric";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { useAppSelector } from "@/hooks/redux-ts";
+import { uiStrings } from "@/utils/translate";
 
 const FilesContainer = () => {
   const files = useAppSelector(state => state.files.files);
@@ -9,7 +10,7 @@ const FilesContainer = () => {
   if (files.length === 0) {
     return (
       <span className="h-[calc(100vh-120px)] flex justify-center items-center">
-        Files not found
+        {uiStrings.filesNotFound}
       </span>
     );
   }
