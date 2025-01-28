@@ -16,6 +16,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import { uploadFile } from "@/actions/file";
 import DefaultButton from "@/components/ui/button/DefaultButton";
 import SlimButton from "@/components/ui/button/SlimButton";
+import { uiStrings } from "@/utils/translate";
 
 const DiskBar = ({
   sort,
@@ -54,7 +55,7 @@ const DiskBar = ({
         <CircleChevronLeft color="#de6e57" />
       </DefaultButton>
       <SlimButton
-        text="Create folder"
+        text={uiStrings.createFolder}
         onClick={() => dispatch(setPopupDisplay("flex"))}>
         <FolderPlus color="#de6e57" />
       </SlimButton>
@@ -68,7 +69,9 @@ const DiskBar = ({
             className="md:mr-1 group-hover:scale-125 transition-all duration-75"
             color="#de6e57"
           />
-          <span className="hidden text-nowrap md:block">Upload file</span>
+          <span className="hidden text-nowrap md:block">
+            {uiStrings.uploadFile}
+          </span>
         </label>
         <input
           multiple={true}
@@ -83,9 +86,9 @@ const DiskBar = ({
         value={sort}
         onChange={e => setSort(e.target.value)}
         className="ml-4 sm:ml-auto">
-        <option value="name">By Name</option>
-        <option value="type">By Type</option>
-        <option value="date">By Date</option>
+        <option value="name">{uiStrings.sortByName}</option>
+        <option value="type">{uiStrings.sortByType}</option>
+        <option value="date">{uiStrings.sortByDate}</option>
       </StyledSelect>
       <button
         className="border-0 outline-0 cursor-pointer my-0 hidden sm:block

@@ -1,14 +1,13 @@
-import { ReactElement } from "react";
 import { useNavigate } from "react-router";
 import { TabsTrigger } from "@radix-ui/react-tabs";
+import React from "react";
 
 const TabButton = ({
   path,
   children,
-}: {
+}: React.PropsWithChildren<{
   path: string;
-  children: ReactElement;
-}) => {
+}>) => {
   const navigate = useNavigate();
   const changeUrl = (url: string) => {
     navigate(`/${url}`);

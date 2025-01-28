@@ -9,6 +9,7 @@ import sizeFormat from "@/utils/sizeFormat";
 import { subProps } from "@/components/disk/fileList/FileGeneric";
 import ActionsDropdown from "@/components/disk/fileList/actions/ActionsDropdown";
 import SlimButton from "@/components/ui/button/SlimButton";
+import { uiStrings } from "@/utils/translate";
 
 const FileListStyled: FC<subProps> = ({ file, clickHandler }) => {
   return (
@@ -33,7 +34,7 @@ const FileListStyled: FC<subProps> = ({ file, clickHandler }) => {
         {sizeFormat(file.size)}
       </span>
       <SlimButton
-        text={`${file.type === "Folder" ? "Open" : "Decrypt"}`}
+        text={`${file.type === "Folder" ? uiStrings.open : uiStrings.decrypt}`}
         onClick={clickHandler}
         className="col-start-5 ml-4 sm:ml-0">
         {file.type === "Folder" ? (

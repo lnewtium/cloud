@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import DefaultButton from "@/components/ui/button/DefaultButton";
 import Input from "@/components/ui/input/Input";
 import { hideAskPass, setCryptPass } from "@/reducers/cryptReducer";
+import { uiStrings } from "@/utils/translate";
 
 export const AskPass = () => {
   const dispatch = useAppDispatch();
@@ -22,27 +23,29 @@ export const AskPass = () => {
                   to-[#262626a1] 100%
                   backdrop-blur-sm"
         onClick={event => event.stopPropagation()}>
-        <span className="text-xl">Provide encryption passphrase</span>
+        <span className="text-xl">{uiStrings.provideEncryptionKey}</span>
         <form autoComplete="off" className="mt-4">
           <Input
             type="password"
             id="passphrase"
             autoComplete="off"
             classnameBox="h-16"
-            placeholder="Enter encryption key"
+            placeholder={uiStrings.enterEncryptionKey}
             onChange={e => dispatch(setCryptPass(e.target.value))}
           />
         </form>
         <div className="flex mt-6 justify-between items-center">
           <DefaultButton
             className="p-4"
-            text="Close"
+            text={uiStrings.close}
             onClick={() => dispatch(hideAskPass())}>
             <X color="#de6e57" />
           </DefaultButton>
           <DefaultButton
             className="p-4"
-            text={currentAction === "upload" ? "Encrypt" : "Decrypt"}
+            text={
+              currentAction === "upload" ? uiStrings.encrypt : uiStrings.decrypt
+            }
             onClick={() => {
               if (currentAction === "upload")
                 dispatch(uploadFileEncrypted(uploadFile!, cryptPass));

@@ -8,6 +8,7 @@ import DiskBar from "@/components/disk/DiskBar";
 import { LoaderCircle } from "lucide-react";
 import { useCallback } from "react";
 import { DropEvent, FileRejection, useDropzone } from "react-dropzone";
+import { uiStrings } from "@/utils/translate";
 
 const Disk = () => {
   const dispatch = useAppDispatch();
@@ -32,7 +33,7 @@ const Disk = () => {
   if (loader) {
     return (
       <div className="flex items-center justify-center h-[calc(100vh-50px)]">
-        <LoaderCircle size={40} className="animate-spin"></LoaderCircle>
+        <LoaderCircle size={40} className="animate-spin" />
       </div>
     );
   }
@@ -50,7 +51,7 @@ const Disk = () => {
       <span
         className="w-full h-[calc(100vh-90px)] flex items-center justify-center
                 text-4xl m-5 border-dashed border-2 border-[var(--font-color)]">
-        Drop files there
+        {uiStrings.dropFilesThere}
       </span>
     </div>
   );

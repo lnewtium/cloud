@@ -1,7 +1,6 @@
 import { logout } from "@/reducers/userReducer";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import { CircleUserRound, LogOut } from "lucide-react";
-import DefaultButton from "@/components/ui/button/DefaultButton";
 import AnimatedLogo from "@/components/navbar/AnimatedLogo";
 import Search from "@/components/navbar/Search";
 import SlimButton from "@/components/ui/button/SlimButton";

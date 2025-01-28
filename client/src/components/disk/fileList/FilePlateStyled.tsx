@@ -9,6 +9,7 @@ import {
 import DefaultButton from "@/components/ui/button/DefaultButton";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import ActionsDropdown from "@/components/disk/fileList/actions/ActionsDropdown";
+import { uiStrings } from "@/utils/translate";
 
 const FilePlateStyled: FC<subProps> = ({ file, clickHandler }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -34,11 +35,11 @@ const FilePlateStyled: FC<subProps> = ({ file, clickHandler }) => {
       <CardFooter className="h-10 flex items-center p-0 pb-2">
         <div ref={ref} className="hidden group-hover:block ml-auto">
           {file.type !== "Folder" ? (
-            <DefaultButton text="decrypt" onClick={clickHandler}>
+            <DefaultButton text={uiStrings.decrypt} onClick={clickHandler}>
               <LockKeyholeOpen color="#de6e57" />
             </DefaultButton>
           ) : (
-            <DefaultButton text="open" onClick={clickHandler}>
+            <DefaultButton text={uiStrings.open} onClick={clickHandler}>
               <ExternalLink color="#de6e57" />
             </DefaultButton>
           )}

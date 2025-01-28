@@ -1,18 +1,14 @@
-import { FC, MouseEventHandler, ReactElement } from "react";
+import React, { MouseEventHandler } from "react";
 import { classTools } from "@/utils/classTools";
 
-type propsType = {
-  children: ReactElement;
-  text: string;
-  className?: string;
-  [_: string]: any;
-};
-
-export const StyledButton: FC<{
-  children: ReactElement[] | ReactElement;
+export const StyledButton = ({
+  children,
+  className,
+  onClick,
+}: React.PropsWithChildren<{
   className?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
-}> = ({ children, className, onClick }) => {
+}>) => {
   return (
     <button
       className={classTools(
@@ -30,12 +26,16 @@ export const StyledButton: FC<{
   );
 };
 
-const DefaultButton: FC<propsType> = ({
+const DefaultButton = ({
   children,
   text,
   className,
   ...props
-}) => {
+}: React.PropsWithChildren<{
+  text: string;
+  className?: string;
+  [_: string]: any;
+}>) => {
   return (
     <StyledButton
       {...props}

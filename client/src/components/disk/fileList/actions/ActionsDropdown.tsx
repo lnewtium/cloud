@@ -13,6 +13,7 @@ import { deleteFile } from "@/actions/file";
 import { useAppDispatch } from "@/hooks/redux-ts";
 import { IFile } from "@/types/file";
 import { classTools } from "@/utils/classTools";
+import { uiStrings } from "@/utils/translate";
 
 type subProps = {
   file: IFile;
@@ -49,7 +50,7 @@ const ActionsDropdown: FC<subProps> = ({ refProp, file, className }) => {
                     to-[#292929] 100%">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuItem className="outline-0">
-          <DefaultButton text="Delete" onClick={deleteClickHandler}>
+          <DefaultButton text={uiStrings.delete} onClick={deleteClickHandler}>
             <Trash2 color="#de6e57" />
           </DefaultButton>
         </DropdownMenuItem>

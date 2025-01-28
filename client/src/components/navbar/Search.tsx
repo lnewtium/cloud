@@ -3,6 +3,7 @@ import { showLoader } from "@/reducers/appReducer";
 import { getFiles, searchFiles } from "@/actions/file";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import Input from "@/components/ui/input/Input";
+import { uiStrings } from "@/utils/translate";
 
 const Search = () => {
   const currentDir = useAppSelector(state => state.files.currentDir);
@@ -42,7 +43,7 @@ const Search = () => {
         type="text"
         autoComplete="off"
         ref={ref}
-        placeholder="Search..."
+        placeholder={uiStrings.search}
       />
     </form>
   );
