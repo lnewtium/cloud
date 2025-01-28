@@ -22,7 +22,7 @@ const Authorization = () => {
 
   const onSubmitReg: FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
-    registration(email, password);
+    dispatch(registration(email, password));
   };
 
   return (

@@ -5,25 +5,29 @@ import { IUser } from "@/types/user";
 import { DispatchType } from "@/reducers";
 
 export const registration = (email: string, password: string) => {
-  type IRes = {
-    token: string;
-    message: string;
+  return async (dispatch: DispatchType) => {
+    type IRes = {
+      token: string;
+      message: string;
+    };
+    try {
+      axios
+        .post<IRes>(
+          "/auth/registration",
+          {
+            email,
+            password,
+          },
+          { baseURL: API_URL },
+        )
+        .then(() => {
+          dispatch(login(email, password));
+        });
+    } catch (e) {
+      // @ts-ignore
+      alert(e.response.data.message);
+    }
   };
-  try {
-    axios
-      .post<IRes>(
-        "/auth/registration",
-        {
-          email,
-          password,
-        },
-        { baseURL: API_URL },
-      )
-      .then(response => alert(response.data.message));
-  } catch (e) {
-    // @ts-ignore
-    alert(e.response.data.message);
-  }
 };
 
 export const login = (email: string, password: string) => {
