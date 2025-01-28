@@ -1,0 +1,5 @@
+{
+  "serverPort": 5000,
+  "filePath": "serverFiles/files",
+  "secretKey": "crypt-key"
+}
