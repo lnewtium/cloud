@@ -11,7 +11,7 @@ import {
   setDownloadFile,
   UploadFileType,
 } from "@/reducers/cryptReducer";
-import { hideLoader, showLoader } from "@/reducers/appReducer";
+import { hideLoader, setSearch, showLoader } from "@/reducers/appReducer";
 import { API_URL } from "@/config";
 import { decryptData, encryptData } from "@/utils/crypto";
 import { DispatchType } from "@/reducers";
@@ -186,6 +186,7 @@ export function searchFiles(search: string) {
         },
         baseURL: API_URL,
       });
+      dispatch(setSearch(true));
       dispatch(setFiles(response.data));
     } catch (e) {
       // @ts-ignore

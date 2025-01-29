@@ -5,6 +5,11 @@ import AnimatedLogo from "@/components/navbar/AnimatedLogo";
 import Search from "@/components/navbar/Search";
 import SlimButton from "@/components/ui/button/SlimButton";
 import { uiStrings } from "@/utils/translate";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@radix-ui/react-dropdown-menu";
 
 const Navbar = () => {
   const isAuth = useAppSelector(state => state.user.isAuth);
@@ -19,16 +24,25 @@ const Navbar = () => {
         {isAuth && ( // If user authorized
           <>
             <Search />
-            <SlimButton
-              text={uiStrings.logout}
-              onClick={() => dispatch(logout())}>
-              <LogOut color="#de6e57" />
-            </SlimButton>
-            <CircleUserRound
-              size={40}
-              color="#c65139"
-              className="hidden sm:block"
-            />
+            <DropdownMenu>
+              <DropdownMenuTrigger className="outline-0 group">
+                <CircleUserRound
+                  size={40}
+                  color="#c65139"
+                  className={
+                    "group-data-[state=open]:scale-105 transition-all duration-75"
+                  }
+                />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                className={"bg-[#2a2a2a] p-1 mt-2 rounded-[10px]"}>
+                <SlimButton
+                  text={uiStrings.logout}
+                  onClick={() => dispatch(logout())}>
+                  <LogOut color="#de6e57" />
+                </SlimButton>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </>
         )}
       </div>

@@ -1,5 +1,5 @@
 import { ChangeEventHandler, useRef, useState } from "react";
-import { showLoader } from "@/reducers/appReducer";
+import { setSearch, showLoader } from "@/reducers/appReducer";
 import { getFiles, searchFiles } from "@/actions/file";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import Input from "@/components/ui/input/Input";
@@ -29,6 +29,7 @@ const Search = () => {
         ),
       );
     } else {
+      dispatch(setSearch(false));
       dispatch(getFiles(currentDir));
     }
   };

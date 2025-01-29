@@ -39,7 +39,7 @@ const Disk = () => {
   }
 
   return !isDragActive ? (
-    <div className="mt-5" {...getRootProps()}>
+    <div className="mt-5 outline-0" {...getRootProps()}>
       <DiskBar sort={sort} setSort={setSort} />
       <FilesContainer />
       <CreateFolder />
