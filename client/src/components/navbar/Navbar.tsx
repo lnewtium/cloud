@@ -30,7 +30,7 @@ const Navbar = () => {
                   size={40}
                   color="#c65139"
                   className={
-                    "group-data-[state=open]:scale-105 transition-all duration-75"
+                    "group-data-[state=open]:scale-110 group-hover:scale-110 transition-all duration-75"
                   }
                 />
               </DropdownMenuTrigger>
