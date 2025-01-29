@@ -2,12 +2,14 @@ import FileGeneric from "./FileGeneric";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { useAppSelector } from "@/hooks/redux-ts";
 import { uiStrings } from "@/utils/translate";
+import UploadFile from "@/components/disk/fileList/UploadFile";
 
 const FilesContainer = () => {
   const files = useAppSelector(state => state.files.files);
   const fileView = useAppSelector(state => state.files.view);
+  const search = useAppSelector(state => state.app.search);
 
-  if (files.length === 0) {
+  if (files.length === 0 && search) {
     return (
       <span className="h-[calc(100vh-120px)] flex justify-center items-center">
         {uiStrings.filesNotFound}
@@ -22,6 +24,7 @@ const FilesContainer = () => {
           {files.map(file => (
             <FileGeneric key={file.id} file={file} />
           ))}
+          <UploadFile />
         </div>
       );
     case "list":
@@ -40,6 +43,7 @@ const FilesContainer = () => {
               </CSSTransition>
             ))}
           </TransitionGroup>
+          <UploadFile />
         </div>
       );
   }

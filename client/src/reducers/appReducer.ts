@@ -1,11 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IInitialState {
   loader: boolean;
+  search: boolean;
 }
 
 const initialState: IInitialState = {
   loader: false,
+  search: false,
 };
 
 const appSlice = createSlice({
@@ -18,8 +20,11 @@ const appSlice = createSlice({
     hideLoader: state => {
       state.loader = false;
     },
+    setSearch: (state, action: PayloadAction<boolean>) => {
+      state.search = action.payload;
+    },
   },
 });
 
-export const { showLoader, hideLoader } = appSlice.actions;
+export const { showLoader, hideLoader, setSearch } = appSlice.actions;
 export default appSlice.reducer;
