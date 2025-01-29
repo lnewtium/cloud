@@ -53,7 +53,7 @@ const DiskBar = ({
         <option value="type">{uiStrings.sortByType}</option>
         <option value="date">{uiStrings.sortByDate}</option>
       </StyledSelect>
-      <div className="bg-[#2a2a2a] flex items-center rounded-[10px] ml-1">
+      <div className="bg-[#2a2a2a] flex items-center rounded-[4px] ml-1">
         <button
           className="border-0 outline-0 cursor-pointer my-0 hidden sm:block
                         mx-2.5 transition-transform duration-100 hover:scale-125"
