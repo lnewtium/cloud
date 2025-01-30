@@ -26,4 +26,5 @@ export const uiStrings = {
   submit: "submit",
   login: "Login",
   registration: "Registration",
+  actions: "Actions",
 };
