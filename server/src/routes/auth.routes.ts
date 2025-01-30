@@ -17,8 +17,8 @@ router.post(
     check("email", "Incorrect email").isEmail(),
     check(
       "password",
-      "Password must be longer than 3 and shorter than 12",
-    ).isLength({ min: 3, max: 12 }),
+      "Password must be longer than 3 and shorter than 24",
+    ).isLength({ min: 3, max: 24 }),
   ],
   async (req: express.Request, res: express.Response) => {
     try {
