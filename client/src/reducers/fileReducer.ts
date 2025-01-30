@@ -36,6 +36,9 @@ const fileSlice = createSlice({
     pushToStack: (state, action: PayloadAction<IFolder>) => {
       state.dirStack.push(action.payload);
     },
+    popStack: state => {
+      state.dirStack.pop();
+    },
     deleteFile: (state, action: PayloadAction<IFile>) => {
       state.files = state.files.filter(file => file.id !== action.payload.id);
     },
@@ -51,6 +54,7 @@ export const {
   addFile,
   setPopupDisplay,
   pushToStack,
+  popStack,
   deleteFile,
   setFileView,
 } = fileSlice.actions;

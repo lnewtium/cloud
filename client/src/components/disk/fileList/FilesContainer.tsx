@@ -20,7 +20,7 @@ const FilesContainer = () => {
   switch (fileView) {
     case "plate":
       return (
-        <div className="flex my-5 flex-wrap">
+        <div className="flex my-4 flex-wrap">
           {files.map(file => (
             <FileGeneric key={file.id} file={file} />
           ))}
@@ -29,7 +29,7 @@ const FilesContainer = () => {
       );
     case "list":
       return (
-        <div className="my-5 mx-0">
+        <div className="my-4 mx-0">
           <TransitionGroup>
             {files.map(file => (
               <CSSTransition

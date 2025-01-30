@@ -3,6 +3,7 @@ import {
   addFile,
   setFiles,
   deleteFile as deleteFileAction,
+  setPopupDisplay,
 } from "@/reducers/fileReducer";
 import {
   showAskPass,
@@ -54,6 +55,7 @@ export function createDir(name: string, dir: IFolder | null) {
         },
       );
       dispatch(addFile(response.data));
+      dispatch(dispatch(setPopupDisplay("none")));
     } catch (e) {
       // @ts-ignore
       alert(e?.response?.data?.message);
