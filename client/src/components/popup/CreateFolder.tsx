@@ -19,7 +19,7 @@ const CreateFolder = () => {
       onClick={() => dispatch(setPopupDisplay("none"))}
       style={{ display: popupDisplay }}>
       <div
-        className="min-w-[400px] w-[45vmin] gap-4 py-8 px-6 rounded-[12px] flex flex-col
+        className="min-w-[500px] w-[45vmin] gap-4 py-8 px-6 rounded-[12px] flex flex-col
                   bg-gradient-to-b
                   from-[#212121d4] 0%
                   via-[#3a3a3aa9] 53%

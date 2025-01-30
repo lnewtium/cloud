@@ -21,7 +21,7 @@ const FilePlateStyled: FC<subProps> = ({ file, clickHandler }) => {
                   via-[#61616160] 53%
                   to-[#262626a1] 100%">
       <CardContent
-        className="w-[180px] h-[180px] flex-col flex items-center text-center justify-center
+        className="w-[200px] h-[200px] flex-col flex items-center text-center justify-center
                   hover:cursor-pointer p-0"
         onClick={clickHandler}>
         {file.type === "Folder" ? (

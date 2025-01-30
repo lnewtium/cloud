@@ -29,7 +29,7 @@ const UploadFile = () => {
                   via-[#61616160] 53%
                   to-[#262626a1] 100%
                   hover:bg-[#57575799] transition-all duration-300">
-      <CardContent className="group flex items-center justify-center w-[180px] h-[220px]">
+      <CardContent className="group flex items-center justify-center w-[200px] h-[220px]">
         <label
           htmlFor="upload-input"
           className="flex flex-col items-center text-center
