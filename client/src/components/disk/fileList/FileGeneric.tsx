@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from "react";
+import { MouseEventHandler } from "react";
 import { pushToStack, setCurrentDir } from "@/reducers/fileReducer";
 import { askForDecryptPass, deleteFile } from "@/actions/file";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
@@ -11,7 +11,7 @@ export type subProps = {
   clickHandler: MouseEventHandler;
 };
 
-const FileGeneric: FC<{ file: IFile }> = ({ file }) => {
+const FileGeneric = ({ file }: { file: IFile }) => {
   const dispatch = useAppDispatch();
   const currentDir = useAppSelector(state => state.files.currentDir);
   const fileView = useAppSelector(state => state.files.view);

@@ -48,7 +48,7 @@ const ActionsDropdown: FC<subProps> = ({ refProp, file, className }) => {
                     from-[#212121] 0%
                     via-[#2b2b2b] 53%
                     to-[#292929] 100%">
-        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+        <DropdownMenuLabel>{uiStrings.actions}</DropdownMenuLabel>
         <DropdownMenuItem className="outline-0">
           <DefaultButton text={uiStrings.delete} onClick={deleteClickHandler}>
             <Trash2 color="#de6e57" />
