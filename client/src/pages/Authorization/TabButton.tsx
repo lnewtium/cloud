@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import { TabsTrigger } from "@radix-ui/react-tabs";
 import React from "react";
+import { uiStrings } from "@/utils/translate";
 
 const TabButton = ({
   path,
@@ -26,7 +27,7 @@ const TabButton = ({
         {children}
       </div>
       <span className="font-bold tracking-wide select-none text-2xl">
-        {capitalize(path)}
+        {uiStrings[path]}
       </span>
     </TabsTrigger>
   );

@@ -95,7 +95,7 @@ const Authorization = () => {
 
           <TabContentForm value="registration" onSubmit={onSubmitReg}>
             <span className="text-[30px] font-bold tracking-wider">
-              {uiStrings.registerTitle}
+              {uiStrings.registrationTitle}
             </span>
             <Input
               id="email"
