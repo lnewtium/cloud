@@ -4,6 +4,7 @@ export const uiStrings = {
   create: "Create",
   decrypt: "Decrypt",
   encrypt: "Encrypt",
+  home: "Home",
   close: "Close",
   logout: "Logout",
   filesNotFound: "Files not found",

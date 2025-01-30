@@ -1,5 +1,6 @@
 import { StyledSelect } from "@/components/ui/DefaultSelect";
 import {
+  popStack,
   setCurrentDir,
   setFileView,
   setPopupDisplay,
@@ -15,6 +16,7 @@ import DefaultButton from "@/components/ui/button/DefaultButton";
 import SlimButton from "@/components/ui/button/SlimButton";
 import { uiStrings } from "@/utils/translate";
 import { Separator } from "@/components/ui/separator";
+import PathBar from "@/components/disk/PathBar";
 
 const DiskBar = ({
   sort,
@@ -28,8 +30,9 @@ const DiskBar = ({
 
   const backClickHandler = () => {
     if (dirStack.length > 0) {
-      const backDirId = dirStack.pop();
-      dispatch(setCurrentDir(backDirId!));
+      const backDirId = dirStack[dirStack.length - 1]!;
+      dispatch(popStack());
+      dispatch(setCurrentDir(backDirId));
     } else {
       dispatch(setCurrentDir(null));
     }
@@ -37,23 +40,22 @@ const DiskBar = ({
 
   return (
     <div className="flex items-stretch gap-2 outline-0">
-      <DefaultButton text="" onClick={backClickHandler}>
+      <DefaultButton text="" onClick={backClickHandler} className="m-0">
         <CircleChevronLeft color="#de6e57" />
       </DefaultButton>
+      <PathBar />
       <SlimButton
+        className="m-0 ml-4 sm:ml-auto"
         text={uiStrings.createFolder}
         onClick={() => dispatch(setPopupDisplay("flex"))}>
         <FolderPlus color="#de6e57" />
       </SlimButton>
-      <StyledSelect
-        value={sort}
-        onChange={e => setSort(e.target.value)}
-        className="ml-4 sm:ml-auto">
+      <StyledSelect value={sort} onChange={e => setSort(e.target.value)}>
         <option value="name">{uiStrings.sortByName}</option>
         <option value="type">{uiStrings.sortByType}</option>
         <option value="date">{uiStrings.sortByDate}</option>
       </StyledSelect>
-      <div className="bg-[#2a2a2a] flex items-center rounded-[4px] ml-1">
+      <div className="bg-[#2a2a2a] flex items-center rounded-[4px] ml-1 py-2">
         <button
           className="border-0 outline-0 cursor-pointer my-0 hidden sm:block
                         mx-2.5 transition-transform duration-100 hover:scale-125"

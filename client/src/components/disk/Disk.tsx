@@ -5,7 +5,6 @@ import CreateFolder from "../popup/CreateFolder";
 import { AskPass } from "../popup/AskPass";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-ts";
 import DiskBar from "@/components/disk/DiskBar";
-import { LoaderCircle } from "lucide-react";
 import { useCallback } from "react";
 import { DropEvent, FileRejection, useDropzone } from "react-dropzone";
 import { uiStrings } from "@/utils/translate";
@@ -32,9 +31,10 @@ const Disk = () => {
 
   if (loader) {
     return (
-      <div className="flex items-center justify-center h-[calc(100vh-50px)]">
-        <LoaderCircle size={40} className="animate-spin" />
-      </div>
+      // <div className="flex items-center justify-center h-[calc(100vh-50px)]">
+      //   <LoaderCircle size={40} className="animate-spin" />
+      // </div>
+      <div />
     );
   }
 
